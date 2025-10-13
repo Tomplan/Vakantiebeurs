@@ -154,7 +154,8 @@ ht<!DOCTYPE html>
               */
               const marker = L.marker([stand.y, stand.x], {
                 title: stand.name,
-                riseOnHover: true
+                riseOnHover: true,
+                draggable: true
               });
               marker.bindPopup(`
                 <img src=${stand.img} style="width:100px">

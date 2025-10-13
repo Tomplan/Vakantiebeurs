@@ -9,6 +9,7 @@
     "y": 1143
   },
   {
+    "img": "./src/data/Logo_TrackingTrailer.jpg",
     "name": "Name_2",
     "stand": "2",
     "description": "add description here",
@@ -17,6 +18,7 @@
     "y": 1147
   },
   {
+    "img": "./src/data/Logo_TrackingTrailer.jpg",
     "name": "Name_3",
     "stand": "3",
     "description": "add description here",
@@ -25,6 +27,7 @@
     "y": 1149
   },
   {
+    "img": "./src/data/Logo_TrackingTrailer.jpg",
     "name": "Name_4",
     "stand": "4",
     "description": "add description here",
@@ -33,6 +36,7 @@
     "y": 1150
   },
   {
+    "img": "./src/data/Logo_TrackingTrailer.jpg",
     "name": "Name_5",
     "stand": "5",
     "description": "add description here",
@@ -41,6 +45,7 @@
     "y": 1119
   },
   {
+    "img": "./src/data/Logo_TrackingTrailer.jpg",
     "name": "Name_6",
     "stand": "6",
     "description": "add description here",
@@ -49,6 +54,7 @@
     "y": 1123
   },
   {
+    "img": "./src/data/Logo_TrackingTrailer.jpg",
     "name": "Name_7",
     "stand": "7",
     "description": "add description here",
@@ -57,6 +63,7 @@
     "y": 1125
   },
   {
+    "img": "./src/data/Logo_TrackingTrailer.jpg",
     "name": "Name_8",
     "stand": "8",
     "description": "add description here",
@@ -65,6 +72,7 @@
     "y": 1126
   },
   {
+    "img": "./src/data/Logo_TrackingTrailer.jpg",
     "name": "Name_9",
     "stand": "9",
     "description": "add description here",
@@ -73,6 +81,7 @@
     "y": 1128
   },
   {
+    "img": "./src/data/Logo_TrackingTrailer.jpg",
     "name": "Name_10",
     "stand": "10",
     "description": "add description here",
@@ -81,6 +90,7 @@
     "y": 1126
   },
   {
+    "img": "./src/data/Logo_TrackingTrailer.jpg",
     "name": "Name_11",
     "stand": "11",
     "description": "add description here",
@@ -89,6 +99,7 @@
     "y": 1122
   },
   {
+    "img": "./src/data/Logo_TrackingTrailer.jpg",
     "name": "Name_12",
     "stand": "12",
     "description": "add description here",
@@ -97,6 +108,7 @@
     "y": 1114
   },
   {
+    "img": "./src/data/Logo_TrackingTrailer.jpg",
     "name": "Name_13",
     "stand": "13",
     "description": "add description here",
@@ -105,6 +117,7 @@
     "y": 1108
   },
   {
+    "img": "./src/data/Logo_TrackingTrailer.jpg",
     "name": "Name_14",
     "stand": "14",
     "description": "add description here",

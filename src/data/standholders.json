@@ -1,6 +1,6 @@
 [
   {
-    "name": "Name1",
+    "name": "Name_1",
     "stand": "1",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
@@ -8,7 +8,7 @@
     "y": 1150
   },
   {
-    "name": "Name2",
+    "name": "Name_2",
     "stand": "2",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
@@ -16,7 +16,7 @@
     "y": 1150
   },
   {
-    "name": "Name3",
+    "name": "Name_3",
     "stand": "3",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
@@ -24,7 +24,7 @@
     "y": 1150
   },
   {
-    "name": "Name4",
+    "name": "Name_4",
     "stand": "4",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
@@ -32,7 +32,7 @@
     "y": 1150
   },
   {
-    "name": "Name5",
+    "name": "Name_5",
     "stand": "5",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
@@ -40,7 +40,7 @@
     "y": 1120
   },
   {
-    "name": "Name6",
+    "name": "Name_6",
     "stand": "6",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
@@ -48,7 +48,7 @@
     "y": 1120
   },
   {
-    "name": "Name7",
+    "name": "Name_7",
     "stand": "7",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
@@ -56,7 +56,7 @@
     "y": 1120
   },
   {
-    "name": "Name8",
+    "name": "Name_8",
     "stand": "8",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
@@ -64,7 +64,7 @@
     "y": 1120
   },
   {
-    "name": "Name9",
+    "name": "Name_9",
     "stand": "9",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",

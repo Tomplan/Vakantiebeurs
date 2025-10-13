@@ -43,22 +43,26 @@
     }
 
     /* ====== Title Overlay ====== */
-    .title-overlay {
-      position: absolute;
-      top: 5%;
-      left: 50%;
-      transform: translate(-50%, 0);
-      color: #1976d2;
-      background: rgba(255,255,255,0.85);
-      padding: 0.6em 2.2em;
-      border-radius: 16px;
-      font-size: 2.2em;
-      font-weight: bold;
-      box-shadow: 0 2px 18px rgba(0,0,0,0.11);
-      z-index: 5;
-      pointer-events: none;
-      text-align: center;
-    }
+   .title-overlay {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  color: #1976d2;
+  background: rgba(255,255,255,0.85);
+  padding: 0.4em 1.2em;
+  border-radius: 16px;
+  font-size: 1.2em;      /* More modest default title size */
+  font-weight: bold;
+  box-shadow: 0 2px 18px rgba(0,0,0,0.11);
+  z-index: 5;
+  pointer-events: none;
+  text-align: center;
+  white-space: nowrap;   /* Force single line */
+  max-width: 90vw;
+  overflow: hidden;
+  text-overflow: ellipsis; /* If needed, show ... */
+}
 
     /* ====== Standholder Circles (interactive) ====== */
     .stand-circle {

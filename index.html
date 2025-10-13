@@ -133,7 +133,7 @@
         function showMarkersIfZoom() {
           markerLayer.clearLayers();
           // Show circles only if zoom >= 1 (adjust as needed)
-          if (map.getZoom() >= -1) {
+          if (map.getZoom() >= 0) {
             standholders.forEach(stand => {
               // Convert SVG x/y to Leaflet pseudo-lat/lng
               // Leaflet uses [lat, lng] so [y, x]

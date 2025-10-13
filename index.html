@@ -79,7 +79,7 @@
     background: #1976d2;
     box-shadow: 0 2px 8px rgba(0,0,0,0.13);
     border: 2px solid #fff;
-    */
+    
     .stand-label {
       color: #fff;
       border-radius: 100%;
@@ -91,7 +91,7 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.13);
       border: 2px solid #fff;
     }
-    
+    */
   </style>
 </head>
 <body>
@@ -160,7 +160,10 @@
                 <p style="margin:0 0 0.5em 0">${stand.description}</p>
                 ${stand.website ? `<a href="${stand.website}" target="_blank" style="color:#1976d2;text-decoration:underline;font-weight:bold;">Visit website</a>` : ''}
               `);
+              /*
               marker.bindTooltip(stand.stand, {permanent: true, direction: 'center', className: 'stand-label', offset: [0,0]});
+              */
+              marker.bindTooltip(stand.stand, {permanent: true, direction: 'center', offset: [0,0]});
               markerLayer.addLayer(marker);
             });
           }

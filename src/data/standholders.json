@@ -37,7 +37,7 @@
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
     "x": 1250,
-    "y": 1145
+    "y": 1150
   },
   {
     "name": "Name6",
@@ -45,7 +45,7 @@
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
     "x": 1270,
-    "y": 1135
+    "y": 1150
   },
   {
     "name": "Name",
@@ -60,8 +60,8 @@
     "stand": "8",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1300,
-    "y": 1150
+    "x": 1250,
+    "y": 1050
   },
   {
     "name": "Name",

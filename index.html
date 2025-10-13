@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vakantiebeurs Event Map</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: sans-serif; background: #f6f6f6; margin:0; padding:0; }
+    h1 { text-align: center; margin-top: 1rem; }
+    .map-container { max-width: 400px; margin: 2rem auto; background: #fff; border-radius: 10px; padding: 1rem; box-shadow: 0 2px 10px rgba(0,0,0,0.07);}
+    svg { width: 100%; height: auto; }
+    .modal-bg { display: none; position: fixed; left:0;top:0;right:0;bottom:0;background:rgba(0,0,0,0.4); align-items:center; justify-content:center; z-index: 10;}
+    .modal { background: #fff; border-radius: 8px; max-width: 350px; padding: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.1);}
+    .modal h2 { margin-top:0; }
+    .close-btn { margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <h1>Vakantiebeurs Event Map</h1>
+  <div class="map-container">
+    <!-- Simple SVG Map -->
+    <svg viewBox="0 0 400 250">
+      <!-- Stand 1 -->
+      <circle cx="90" cy="80" r="22" fill="#2196f3" stroke="#fff" stroke-width="2" onclick="showModal(0)" style="cursor:pointer"/>
+      <text x="90" y="87" text-anchor="middle" font-size="15" fill="#fff">A10</text>
+      <!-- Stand 2 -->
+      <circle cx="250" cy="120" r="22" fill="#fbc02d" stroke="#fff" stroke-width="2" onclick="showModal(1)" style="cursor:pointer"/>
+      <text x="250" y="127" text-anchor="middle" font-size="15" fill="#fff">B05</text>
+      <!-- Add more stands as needed -->
+    </svg>
+  </div>
+  <!-- Modal Popup -->
+  <div class="modal-bg" id="modal-bg" onclick="hideModal()">
+    <div class="modal" id="modal" onclick="event.stopPropagation()">
+      <h2 id="modal-title"></h2>
+      <p><b>Stand:</b> <span id="modal-stand"></span></p>
+      <p id="modal-desc"></p>
+      <p><a id="modal-link" href="#" target="_blank">Visit website</a></p>
+      <button class="close-btn" onclick="hideModal()">Close</button>
+    </div>
+  </div>
+
+  <script>
+    // Example standholder data
+    const standholders = [
+      {
+        name: "TravelCo",
+        stand: "A10",
+        description: "Specialist in adventure travel.",
+        website: "https://travelco.com"
+      },
+      {
+        name: "SunTours",
+        stand: "B05",
+        description: "Beach holidays and family fun.",
+        website: "https://suntours.com"
+      }
+    ];
+
+    function showModal(idx) {
+      document.getElementById("modal-title").textContent = standholders[idx].name;
+      document.getElementById("modal-stand").textContent = standholders[idx].stand;
+      document.getElementById("modal-desc").textContent = standholders[idx].description;
+      document.getElementById("modal-link").href = standholders[idx].website;
+      document.getElementById("modal-link").textContent = "Visit website";
+      document.getElementById("modal-bg").style.display = "flex";
+    }
+
+    function hideModal() {
+      document.getElementById("modal-bg").style.display = "none";
+    }
+  </script>
+</body>
+</html>

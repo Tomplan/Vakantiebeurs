@@ -74,24 +74,24 @@ ht<!DOCTYPE html>
         padding: 0.5em;
       }
     }
-    /* Stand label styles */
+    /* Tooltip Stand label styles */
     /* 
     background: #1976d2;
     box-shadow: 0 2px 8px rgba(0,0,0,0.13);
     border: 2px solid #fff;
-    
+    */
     .stand-label {
       color: #fff;
       border-radius: 100%;
       font-weight: bold;
-      font-size: 1em;
+      font-size: 0.1em;
       padding: 0.2em 0.2em;
       text-align: center;
       background: #1976d2;
       box-shadow: 0 2px 8px rgba(0,0,0,0.13);
       border: 2px solid #fff;
     }
-    */
+   
   </style>
 </head>
 <body>
@@ -167,6 +167,7 @@ ht<!DOCTYPE html>
               marker.bindTooltip(stand.stand, {
                 permanent: true, 
                 direction: 'center', 
+                className: 'stand-label',
                 offset: [0,0],
                 opacity: 1
               });

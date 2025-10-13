@@ -4,55 +4,55 @@
     "stand": "1",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 970,
-    "y": 1010
+    "x": 1230,
+    "y": 1150
   },
   {
     "name": "Name2",
     "stand": "2",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 985,
-    "y": 1025
+    "x": 1250,
+    "y": 1150
   },
   {
     "name": "Name3",
     "stand": "3",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1075,
-    "y": 1050
+    "x": 1270,
+    "y": 1150
   },
   {
     "name": "Name4",
     "stand": "4",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1100,
-    "y": 1075
+    "x": 1290,
+    "y": 1150
   },
   {
     "name": "Name5",
     "stand": "5",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1250,
-    "y": 1150
+    "x": 1230,
+    "y": 1120
   },
   {
     "name": "Name6",
     "stand": "6",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1270,
-    "y": 1150
+    "x": 1250,
+    "y": 1120
   },
   {
     "name": "Name7",
     "stand": "7",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1250,
+    "x": 1270,
     "y": 1120
   },
   {
@@ -60,7 +60,7 @@
     "stand": "8",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1270,
+    "x": 1290,
     "y": 1120
   },
   {
@@ -68,7 +68,7 @@
     "stand": "9",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1290,
+    "x": 1310,
     "y": 1120
   },
   {
@@ -76,7 +76,7 @@
     "stand": "10",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1310,
+    "x": 1330,
     "y": 1120
   },
   {
@@ -84,7 +84,7 @@
     "stand": "11",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1330,
+    "x": 1350,
     "y": 1120
   },
   {
@@ -92,7 +92,7 @@
     "stand": "12",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1350,
+    "x": 1370,
     "y": 1120
   },
   {
@@ -100,7 +100,7 @@
     "stand": "13",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1370,
+    "x": 1390,
     "y": 1120
   },
   {
@@ -108,7 +108,7 @@
     "stand": "14",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1390,
+    "x": 1410,
     "y": 1120
   },
   {
@@ -116,7 +116,7 @@
     "stand": "15",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1410,
+    "x": 1430,
     "y": 1120
   },
   {
@@ -124,7 +124,7 @@
     "stand": "16",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1430,
+    "x": 1450,
     "y": 1120
   },
   {

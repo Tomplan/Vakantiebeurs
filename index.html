@@ -5,83 +5,94 @@
   <title>4x4 Vakantiebeurs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
+    /* ====== Base Styles ====== */
     body {
-  font-family: 'Segoe UI', Arial, sans-serif;
-  background: #f6f6f6;
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-}
-    /* Map container styles */
-  .map-container {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-  background: #fff;
-  border-radius: 0;
-  box-shadow: none;
-  overflow: hidden;
-}
-    /* SVG background image */.svg-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  max-width: 100vw;
-  max-height: 100vh;
-  display: block;
-  object-fit: contain;
-  border-radius: 0;
-  z-index: 1;
-}
-    /* Title overlay styles */
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f6f6f6;
+      margin: 0;
+      padding: 0;
+      height: 100vh; /* Ensure body fills viewport height */
+    }
+
+    /* ====== Map Container ====== */
+    .map-container {
+      position: relative; /* Needed for absolute positioning of overlay and circles */
+      width: 100vw;       /* Full browser width */
+      height: 100vh;      /* Full browser height */
+      margin: 0;          /* Remove default margin */
+      padding: 0;         /* Remove default padding */
+      background: #fff;   /* White background behind map */
+      border-radius: 0;   /* No rounded corners */
+      box-shadow: none;   /* Remove shadow */
+      overflow: hidden;   /* Hide anything overflowing the container */
+    }
+
+    /* ====== SVG Background Map ====== */
+    .svg-bg {
+      position: absolute; /* So it fills the container */
+      top: 0;
+      left: 0;
+      width: 100vw;       /* Full width */
+      height: 100vh;      /* Full height */
+      max-width: 100vw;
+      max-height: 100vh;
+      display: block;
+      object-fit: contain; /* Maintain aspect ratio */
+      border-radius: 0;
+      z-index: 1;          /* Ensure it's behind overlay and circles */
+    }
+
+    /* ====== Title Overlay ====== */
     .title-overlay {
-      position: absolute;
-      top: 5%;
-      left: 50%;
-      transform: translate(-50%, 0);
-      color: #1976d2;
-      background: rgba(255,255,255,0.85);
+      position: absolute; /* Overlay on top of map */
+      top: 5%;            /* Push down from top of the map */
+      left: 50%;          /* Center horizontally */
+      transform: translate(-50%, 0); /* Center the overlay */
+      color: #1976d2;     /* Main theme color */
+      background: rgba(255,255,255,0.85); /* Semi-transparent background for readability */
       padding: 0.6em 2.2em;
       border-radius: 16px;
       font-size: 2.2em;
       font-weight: bold;
-      box-shadow: 0 2px 18px rgba(0,0,0,0.11);
-      z-index: 5;
-      pointer-events: none; /* allows click-through to map below */
+      box-shadow: 0 2px 18px rgba(0,0,0,0.11); /* Soft shadow */
+      z-index: 5;         /* Above map, below modal */
+      pointer-events: none; /* Allow clicks to pass through to map and circles */
       text-align: center;
+      /* Responsive adjustments */
     }
-    /* Stand circles */
+
+    /* ====== Standholder Circles (interactive) ====== */
     .stand-circle {
-      position: absolute;
-      width: 40px;
+      position: absolute; /* Placed dynamically by JS */
+      width: 40px;        /* Circle size */
       height: 40px;
-      border-radius: 50%;
-      background: #1976d2;
-      color: #fff;
-      text-align: center;
-      line-height: 40px;
+      border-radius: 50%; /* Make it a circle */
+      background: #1976d2; /* Theme color */
+      color: #fff;        /* White text */
+      text-align: center; 
+      line-height: 40px;  /* Vertically center text */
       font-weight: bold;
       font-size: 17px;
-      cursor: pointer;
-      border: 2px solid #fff;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.13);
+      cursor: pointer;    /* Pointer on hover */
+      border: 2px solid #fff; /* White border for visibility */
+      box-shadow: 0 2px 8px rgba(0,0,0,0.13); /* Subtle shadow */
       transition: background 0.2s;
-      z-index: 2;
+      z-index: 10;        /* Above map and overlay */
     }
-    .stand-circle:hover, .stand-circle:focus { background: #004ba0; outline: none; }
-    /* Modal styles */
+    .stand-circle:hover, .stand-circle:focus {
+      background: #004ba0; /* Darker on hover/focus */
+      outline: none;
+    }
+
+    /* ====== Modal Styles (popup info) ====== */
     .modal-bg { 
-      display: none; 
+      display: none;      /* Hidden by default */
       position: fixed; 
       left:0;top:0;right:0;bottom:0;
-      background:rgba(0,0,0,0.4); 
+      background:rgba(0,0,0,0.4); /* Dimmed background */
       align-items:center; 
       justify-content:center; 
-      z-index: 100;
+      z-index: 100;       /* Very top */
     }
     .modal { 
       background: #fff; 
@@ -92,10 +103,22 @@
     }
     .modal h2 { margin-top:0; margin-bottom: 0.5rem;}
     .modal-desc { margin-bottom: 0.8rem;}
-    .close-btn { margin-top: 1rem; background: #1976d2; color: #fff; border: none; padding: 0.6rem 1.2rem; border-radius: 5px; cursor: pointer; font-size: 1rem;}
+    .close-btn { 
+      margin-top: 1rem; 
+      background: #1976d2; 
+      color: #fff; 
+      border: none; 
+      padding: 0.6rem 1.2rem; 
+      border-radius: 5px; 
+      cursor: pointer; 
+      font-size: 1rem;
+    }
     .close-btn:hover { background: #004ba0;}
+
+    /* ====== Responsive Adjustments ====== */
     @media (max-width: 600px) {
       .map-container { min-height: 320px; }
+      .svg-bg { height: 320px; }
       .title-overlay { font-size: 1.2em; padding: 0.4em 1em; }
       .modal { max-width: 95vw; padding: 1rem; }
     }
@@ -103,67 +126,100 @@
 </head>
 <body>
   <div class="map-container" id="map-container">
-    <!-- Overlaid page title -->
+    <!-- ====== Overlaid page title (customizable) ====== -->
     <div class="title-overlay">4x4 Vakantiebeurs</div>
-    <!-- The SVG map is loaded here -->
+    <!-- ====== The SVG map is loaded here ====== -->
     <img src="src/map.svg" alt="Event Map" class="svg-bg" id="svg-map">
-    <!-- Standholder circles will be placed by JS -->
+    <!-- ====== Standholder circles will be placed by JS ====== -->
   </div>
   
-  <!-- Modal Popup -->
+  <!-- ====== Modal Popup for Standholder info ====== -->
   <div class="modal-bg" id="modal-bg" onclick="hideModal()">
     <div class="modal" id="modal" onclick="event.stopPropagation()">
       <h2 id="modal-title"></h2>
       <p><b>Stand:</b> <span id="modal-stand"></span></p>
       <div class="modal-desc" id="modal-desc"></div>
-      <p><a id="modal-link" href="#" target="_blank" style="color:#1976d2;text-decoration:underline;font-weight:bold;">Visit website</a></p>
+      <p>
+        <a id="modal-link" href="#" target="_blank" style="color:#1976d2;text-decoration:underline;font-weight:bold;">
+          Visit website
+        </a>
+      </p>
       <button class="close-btn" onclick="hideModal()">Close</button>
     </div>
   </div>
 
   <script>
-    // Load standholders.json and place circles
-    fetch('src/data/standholders.json')
+    // ==============================================================
+    // Load standholders.json and place circles on the SVG map
+    // ==============================================================
+
+    // Cache-busting: Add a query string to always load latest JSON!
+    fetch('src/data/standholders.json?v=' + Date.now())
       .then(response => response.json())
       .then(standholders => {
         const container = document.getElementById('map-container');
         const svgImg = document.getElementById('svg-map');
+
+        // Function to place standholder circles
         function placeCircles() {
-          // Remove old circles
+          // Remove old circles (in case of resize or reload)
           Array.from(document.getElementsByClassName('stand-circle')).forEach(e => e.remove());
-          // Get SVG size and position
+
+          // Get SVG image position and size relative to map container
           const rect = svgImg.getBoundingClientRect();
           const containerRect = container.getBoundingClientRect();
           const offsetLeft = rect.left - containerRect.left;
           const offsetTop = rect.top - containerRect.top;
           const width = rect.width;
           const height = rect.height;
-          // Place each standholder circle
+
+          // Place each standholder circle using coordinates from JSON
           standholders.forEach((stand, i) => {
-            // Stand coordinates are relative to SVG's viewBox (e.g. 0-700, 0-500)
-            // Adjust these values based on your SVG's dimensions!
-            const x = (stand.x / 700) * width + offsetLeft - 20; // center circle (half of width)
-            const y = (stand.y / 500) * height + offsetTop - 20;
+            /**
+             * Stand coordinates (x, y) are relative to SVG's viewBox.
+             * Example: if viewBox is "0 0 700 500", then x:90, y:80 for a stand
+             * To place to correct pixel position, scale to SVG image size:
+             *   left = (x / 700) * width + offsetLeft - 20 (center circle)
+             *   top  = (y / 500) * height + offsetTop - 20
+             * Adjust -20 for half of circle width (40px).
+             */
+            const x = (stand.x / 700) * width + offsetLeft - 20; // center circle horizontally
+            const y = (stand.y / 500) * height + offsetTop - 20; // center circle vertically
+
+            // Create the circle element
             const el = document.createElement('div');
             el.className = 'stand-circle';
-            el.setAttribute('tabindex', '0'); // For keyboard accessibility
-            el.setAttribute('title', stand.name);
+            el.setAttribute('tabindex', '0'); // Keyboard accessibility
+            el.setAttribute('title', stand.name); // Tooltip
             el.style.left = x + 'px';
             el.style.top = y + 'px';
-            el.textContent = stand.stand;
+            el.textContent = stand.stand;     // Show stand code
+
+            // Click/Enter opens modal with info
             el.onclick = () => showModal(stand);
             el.onkeydown = (e) => { if (e.key === 'Enter') showModal(stand); }
+
+            // Add circle to map
             container.appendChild(el);
           });
         }
-        // Place circles after image loads
+
+        // Place circles after SVG loads (important for correct sizing)
         svgImg.onload = placeCircles;
-        // Also place after a short delay (in case onload doesn't fire)
+        // Also place after a short delay, in case onload doesn't fire
         setTimeout(placeCircles, 1000);
+        // Reposition circles on window resize
         window.addEventListener('resize', placeCircles);
       });
 
-    // Modal logic
+    // ==============================================================
+    // Modal logic: show/hide standholder information
+    // ==============================================================
+
+    /**
+     * Show modal popup for a standholder
+     * @param {Object} stand - standholder info from JSON
+     */
     function showModal(stand) {
       document.getElementById("modal-title").textContent = stand.name;
       document.getElementById("modal-stand").textContent = stand.stand;
@@ -172,6 +228,10 @@
       document.getElementById("modal-link").textContent = (stand.website ? "Visit website" : "");
       document.getElementById("modal-bg").style.display = "flex";
     }
+
+    /**
+     * Hide modal popup
+     */
     function hideModal() {
       document.getElementById("modal-bg").style.display = "none";
     }

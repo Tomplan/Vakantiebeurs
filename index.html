@@ -117,11 +117,14 @@
 
     /* ====== Responsive Adjustments ====== */
     @media (max-width: 600px) {
-      .map-container { min-height: 320px; }
-      .svg-bg { height: 320px; }
-      .title-overlay { font-size: 1.2em; padding: 0.4em 1em; }
-      .modal { max-width: 95vw; padding: 1rem; }
-    }
+  .map-container { min-height: 320px; }
+  .svg-bg { height: 320px; }
+  .title-overlay { 
+    font-size: 1em;        /* Smaller title on mobile */
+    padding: 0.3em 0.7em;  /* Less padding */
+  }
+  .modal { max-width: 95vw; padding: 1rem; }
+}
   </style>
 </head>
 <body>

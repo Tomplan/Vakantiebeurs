@@ -1,18 +1,18 @@
 [
   {
-    "id": 1,
     "name": "TravelCo",
     "stand": "A10",
     "description": "Specialist in adventure travel.",
     "website": "https://travelco.com",
-    "location": { "x": 100, "y": 120 }
+    "x": 90,
+    "y": 80
   },
   {
-    "id": 2,
     "name": "SunTours",
     "stand": "B05",
     "description": "Beach holidays and family fun.",
     "website": "https://suntours.com",
-    "location": { "x": 250, "y": 180 }
+    "x": 250,
+    "y": 120
   }
 ]

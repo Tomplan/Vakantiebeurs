@@ -17,7 +17,7 @@ function App() {
               key={stand.id}
               cx={stand.location.x}
               cy={stand.location.y}
-              r={20}
+              r={100}
               fill="#2196f3"
               stroke="#fff"
               strokeWidth={2}

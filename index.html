@@ -111,9 +111,9 @@
     // Create the Leaflet map using the SVG coordinate system
     const map = L.map('map', {
       crs: L.CRS.Simple,
-      minZoom: -2,
-      maxZoom: 2,
-      zoom: 0,
+      minZoom: 0,
+      maxZoom: 6,
+      zoom: 4,
       center: [svgHeight/2, svgWidth/2], // center of the SVG
       zoomControl: true
     });

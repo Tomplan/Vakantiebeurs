@@ -163,9 +163,13 @@ ht<!DOCTYPE html>
               `);
               /*
               marker.bindTooltip(stand.stand, {permanent: true, direction: 'center', className: 'stand-label', offset: [0,0]});
+               */
+              marker.bindTooltip(stand.stand, {
+                permanent: true, 
+                direction: 'center', 
+                offset: [0,0]
+              });
               
-              marker.bindTooltip(stand.stand, {permanent: true, direction: 'center', offset: [0,0]});
-              */
               markerLayer.addLayer(marker);
             });
           }

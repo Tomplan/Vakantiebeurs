@@ -11,7 +11,7 @@ function App() {
       <h1>Vakantiebeurs Event Map</h1>
       <div className="map-container">
         {/* Example SVG map */}
-        <svg viewBox="0 0 400 400" style={{ width: "100%", height: "auto" }}>
+        <svg viewBox="0 0 4000 2000" style={{ width: "100%", height: "auto" }}>
           {standholders.map((stand) => (
             <circle
               key={stand.id}

@@ -4,15 +4,15 @@
     "stand": "A10",
     "description": "Specialist in adventure travel.",
     "website": "https://travelco.com",
-    "x": 500,
-    "y": 500
+    "x": 1000,
+    "y": 1000
   },
   {
     "name": "SunTours",
     "stand": "B05",
     "description": "Beach holidays and family fun.",
     "website": "https://suntours.com",
-    "x": 600,
-    "y": 600
+    "x": 2000,
+    "y": 2000
   }
 ]

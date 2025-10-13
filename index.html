@@ -126,7 +126,8 @@
     }
 
     /* ====== Orientation Handling ====== */
-    @media only screen and (orientation: portrait) {
+    
+@media only screen and (orientation: portrait) {
   .map-container::before {
     content: "Please rotate your device to landscape for the best experience!";
     position: fixed;
@@ -135,28 +136,27 @@
     background: rgba(255,255,255,0.96);
     color: #1976d2;
     display: flex; align-items: center; justify-content: center;
-    font-size: 1.1em; /* Smaller font size */
+    font-size: 1em;
     z-index: 9999;
     text-align: center;
     padding: 1em;
     pointer-events: auto;
-    filter: none; /* Do not blur the overlay */
+    filter: none; /* Do NOT blur the overlay message */
+  }
+  .svg-bg, .stand-circle {
+    filter: blur(5px); /* Blur only map and circles */
   }
   .title-overlay {
-    filter: blur(5px);
-  }
-  .map-container, .svg-bg, .stand-circle {
-    filter: blur(5px); /* Blur only the map/circles/title */
+    filter: blur(5px); /* Blur the overlay title */
   }
 }
 
 @media only screen and (orientation: portrait) and (max-width: 600px) {
   .map-container::before {
-    font-size: 0.85em; /* Even smaller font for small screens */
+    font-size: 0.85em;
     padding: 0.5em;
   }
 }
-    }
   </style>
 </head>
 <body>

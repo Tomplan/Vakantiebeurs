@@ -116,7 +116,11 @@
       maxZoom: 8,
       zoom: -1,
       center: [svgHeight/2, svgWidth/2], // center of the SVG
-      zoomControl: true
+      zoomControl: true,
+      fitbounds([
+    [0, 0],
+    [4000, 2000]
+])
     });
 
     // Add SVG as image overlay

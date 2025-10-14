@@ -14,8 +14,8 @@
     "stand": "2",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1260,
-    "y": 1146
+    "lat": 1260,
+    "lng": 1146
   },
   {
     "img": "./src/data/Logo_TrackingTrailer.jpg",
@@ -23,8 +23,8 @@
     "stand": "3",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1280,
-    "y": 1148
+    "lat": 1280,
+    "lng": 1148
   },
   {
     "img": "./src/data/Logo_TrackingTrailer.jpg",
@@ -32,8 +32,8 @@
     "stand": "4",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1300,
-    "y": 1149.5
+    "lat": 1300,
+    "lng": 1149.5
   },
   {
     "img": "./src/data/Logo_TrackingTrailer.jpg",
@@ -41,8 +41,8 @@
     "stand": "5",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1240,
-    "y": 1120
+    "lat": 1240,
+    "lng": 1120
   },
   {
     "img": "./src/data/Logo_TrackingTrailer.jpg",
@@ -50,8 +50,8 @@
     "stand": "6",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1260,
-    "y": 1123
+    "lat": 1260,
+    "lng": 1123
   },
   {
     "img": "./src/data/Logo_TrackingTrailer.jpg",
@@ -59,8 +59,8 @@
     "stand": "7",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1280,
-    "y": 1125
+    "lat": 1280,
+    "lng": 1125
   },
   {
     "img": "./src/data/Logo_TrackingTrailer.jpg",
@@ -68,8 +68,8 @@
     "stand": "8",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1300,
-    "y": 1127
+    "lat": 1300,
+    "lng": 1127
   },
   {
     "img": "./src/data/Logo_TrackingTrailer.jpg",
@@ -77,8 +77,8 @@
     "stand": "9",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1320,
-    "y": 1127.5
+    "lat": 1320,
+    "lng": 1127.5
   },
   {
     "img": "./src/data/Logo_TrackingTrailer.jpg",
@@ -86,8 +86,8 @@
     "stand": "10",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1340,
-    "y": 1126
+    "lat": 1340,
+    "lng": 1126
   },
   {
     "img": "./src/data/Logo_TrackingTrailer.jpg",
@@ -95,8 +95,8 @@
     "stand": "11",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1360,
-    "y": 1122
+    "lat": 1360,
+    "lng": 1122
   },
   {
     "img": "./src/data/Logo_TrackingTrailer.jpg",
@@ -104,8 +104,8 @@
     "stand": "12",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1380,
-    "y": 1114
+    "lat": 1380,
+    "lng": 1114
   },
   {
     "img": "./src/data/Logo_TrackingTrailer.jpg",
@@ -113,8 +113,8 @@
     "stand": "13",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1400,
-    "y": 1106
+    "lat": 1400,
+    "lng": 1106
   },
   {
     "img": "./src/data/Logo_TrackingTrailer.jpg",
@@ -122,695 +122,695 @@
     "stand": "14",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1420,
-    "y": 1098
+    "lat": 1420,
+    "lng": 1098
   },
   {
     "name": "Name_15",
     "stand": "15",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1440,
-    "y": 1090
+    "lat": 1440,
+    "lng": 1090
   },
   {
     "name": "Name_16",
     "stand": "16",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1460,
-    "y": 1082
+    "lat": 1460,
+    "lng": 1082
   },
   {
     "name": "Name_17",
     "stand": "17",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1440,
-    "y": 1070
+    "lat": 1440,
+    "lng": 1070
   },
   {
     "name": "Name_18",
     "stand": "18",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1460,
-    "y": 1062
+    "lat": 1460,
+    "lng": 1062
   },
   {
     "name": "Name_19",
     "stand": "19",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1500,
-    "y": 1070
+    "lat": 1500,
+    "lng": 1070
   },
   {
     "name": "Name_20",
     "stand": "20",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1520,
-    "y": 1060
+    "lat": 1520,
+    "lng": 1060
   },
   {
     "name": "Name_21",
     "stand": "21",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1540,
-    "y": 1053
+    "lat": 1540,
+    "lng": 1053
   },
   {
     "name": "Name_22",
     "stand": "22",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1560,
-    "y": 1045
+    "lat": 1560,
+    "lng": 1045
   },
   {
     "name": "Name_23",
     "stand": "23",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1580,
-    "y": 1030
+    "lat": 1580,
+    "lng": 1030
   },
   {
     "name": "Name_24",
     "stand": "24",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1580,
-    "y": 1020
+    "lat": 1580,
+    "lng": 1020
   },
   {
     "name": "Name_25",
     "stand": "25",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1480,
-    "y": 980
+    "lat": 1480,
+    "lng": 980
   },
   {
     "name": "Name_26",
     "stand": "26",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_27",
     "stand": "27",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_28",
     "stand": "28",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_29",
     "stand": "29",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_30",
     "stand": "30",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_31",
     "stand": "31",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 950,
-    "y": 1000
+    "lat": 950,
+    "lng": 1000
   },
   {
     "name": "Name_32",
     "stand": "32",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_33",
     "stand": "33",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_34",
     "stand": "34",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_35",
     "stand": "35",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_36",
     "stand": "36",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_37",
     "stand": "37",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_38",
     "stand": "38",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_39",
     "stand": "39",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_40",
     "stand": "40",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_41",
     "stand": "41",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 950,
-    "y": 1000
+    "lat": 950,
+    "lng": 1000
   },
   {
     "name": "Name_42",
     "stand": "42",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_43",
     "stand": "43",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_44",
     "stand": "44",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_45",
     "stand": "45",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_46",
     "stand": "46",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_47",
     "stand": "47",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_48",
     "stand": "48",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_49",
     "stand": "49",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_50",
     "stand": "50",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_51",
     "stand": "51",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 950,
-    "y": 1000
+    "lat": 950,
+    "lng": 1000
   },
   {
     "name": "Name_52",
     "stand": "52",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_53",
     "stand": "53",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_54",
     "stand": "54",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_55",
     "stand": "55",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_56",
     "stand": "56",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_57",
     "stand": "57",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_58",
     "stand": "58",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_59",
     "stand": "59",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_60",
     "stand": "60",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_61",
     "stand": "61",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 950,
-    "y": 1000
+    "lat": 950,
+    "lng": 1000
   },
   {
     "name": "Name_62",
     "stand": "62",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_63",
     "stand": "63",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_64",
     "stand": "64",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_65",
     "stand": "65",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_66",
     "stand": "66",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_67",
     "stand": "67",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_68",
     "stand": "68",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_69",
     "stand": "69",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_70",
     "stand": "70",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_71",
     "stand": "71",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 950,
-    "y": 1000
+    "lat": 950,
+    "lng": 1000
   },
   {
     "name": "Name_72",
     "stand": "72",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_73",
     "stand": "73",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_74",
     "stand": "74",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_75",
     "stand": "75",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_76",
     "stand": "76",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_77",
     "stand": "77",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_78",
     "stand": "78",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_79",
     "stand": "79",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_80",
     "stand": "80",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_81",
     "stand": "81",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 950,
-    "y": 1000
+    "lat": 950,
+    "lng": 1000
   },
   {
     "name": "Name_82",
     "stand": "82",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_83",
     "stand": "83",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_84",
     "stand": "84",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_85",
     "stand": "85",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_86",
     "stand": "86",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_87",
     "stand": "87",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_88",
     "stand": "88",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_89",
     "stand": "89",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_90",
     "stand": "90",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_91",
     "stand": "91",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 950,
-    "y": 1000
+    "lat": 950,
+    "lng": 1000
   },
   {
     "name": "Name_92",
     "stand": "92",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_93",
     "stand": "93",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_94",
     "stand": "94",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_95",
     "stand": "95",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_96",
     "stand": "96",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_97",
     "stand": "97",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_98",
     "stand": "98",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_99",
     "stand": "99",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   },
   {
     "name": "Name_100",
     "stand": "100",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 1000,
-    "y": 1050
+    "lat": 1000,
+    "lng": 1050
   }
 ]

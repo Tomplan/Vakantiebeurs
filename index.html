@@ -326,9 +326,12 @@
       map.addControl(searchControl);
 
 
-        searchControl.on('search_locationfound', function(event) {
-		  event.layer.openPopup();
-        });
+     // Open Markers Popup when searched for and found
+
+      searchControl.on('search:locationfound', function(e) {
+      e.layer.fire('click'); // Automatically open popup
+      });
+
       });
 
     

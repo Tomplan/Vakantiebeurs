@@ -257,13 +257,16 @@
          // Example condition: Only show markers at or above a certain zoom
           // (here always true, but you can adjust for performance)
           // Show circles only if zoom >= 1 (adjust as needed)
+          
           if (map.getZoom() >= -1) {
+            
             // Loop through every stand object in the JSON
+            
             standholders.forEach(stand => {
+              
               // Leaflet uses [lat, lng], so in our flat system: [y, x]
               // Convert SVG x/y to Leaflet pseudo-lat/lng
 
-             
               const marker = L.marker([stand.y, stand.x], {
                 title: stand.name,
                 riseOnHover: true,
@@ -276,6 +279,8 @@
                 fillOpacity: 0.8,
                 weight: 2
               */
+              
+              // Bind a popup that appears when the marker is clicked
               marker.bindPopup(`
                 <img src=${stand.img} style="width:100px">
                 <h2 style="margin:0;font-size:1.1em">${stand.name}</h2>
@@ -283,9 +288,9 @@
                 <p style="margin:0 0 0.5em 0">${stand.description}</p>
                 ${stand.website ? `<a href="${stand.website}" target="_blank" style="color:#1976d2;text-decoration:underline;font-weight:bold;">Visit website</a>` : ''}
               `);
-              /*
-              marker.bindTooltip(stand.stand, {permanent: true, direction: 'center', className: 'stand-label', offset: [0,0]});
-               */
+
+              // Bind a permanent label showing the stand number
+              
               marker.bindTooltip(stand.stand, {
                 permanent: true, 
                 direction: 'center', 

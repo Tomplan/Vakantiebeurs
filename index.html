@@ -308,6 +308,8 @@
         // Show/hide circles at startup and on zoom
 
         showMarkersIfZoom();
+        
+        // Update marker visibility whenever zoom changes
         map.on('zoomend', showMarkersIfZoom);
       });
      // Add the search control

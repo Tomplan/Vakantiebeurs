@@ -199,20 +199,6 @@
     // Create the Leaflet map using the SVG coordinate system
 var map = L.map('map').setView([51.89808547622925, 5.773899908908296], 29);
 
-var streetMap = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-});
-  
-  streetMap.addTo(map);
-
-var terrainMap2 = L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_terrain_background/{z}/{x}/{y}{r}.{ext}', {
-	minZoom: 0,
-	maxZoom: 18,
-	attribution: '&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://www.stamen.com/" target="_blank">Stamen Design</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-	ext: 'png'
-});
-
- //  terrainMap.addTo(map);
     var terrainMap = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png', {
 	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
 	subdomains: 'abcd',
@@ -313,7 +299,7 @@ var terrainMap2 = L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_terrain
                 permanent: true,           // Always visible
                 direction: 'center',       // Centered on the marker
                 className: 'stand-label',  // CSS class for styling
-                offset: [-15.5,-0.5],      // offset
+               // offset: [-15.5,-0.5],      // offset
                 opacity: 1                 // Fully visible
               });
               // Add this marker to the group

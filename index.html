@@ -325,8 +325,13 @@
         
       // Add the search control to the map UI (defaults to top right)
       map.addControl(searchControl);
+
+      // Open Markers Popup when searched for and found
         
+      searchControl.on('search:locationfound', function(e) {
+      e.layer.fire('click'); // Automatically open popup
       });
+   });
 
     
   </script>

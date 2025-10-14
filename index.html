@@ -18,7 +18,7 @@
        LEAFLET CORE STYLESHEET (required)
        ============================================ -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-<link rel="stylesheet" href="https://unpkg.com/leaflet-control-search@2.9.9/dist/leaflet-search.min.css"/>
+<link rel="stylesheet" href="https://unpkg.com/leaflet-search@2.9.9/dist/leaflet-search.min.css"/>
   
   <style>
     
@@ -157,7 +157,8 @@
   <div class="title-overlay">4x4 Vakantiebeurs</div>
   
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="https://unpkg.com/leaflet-control-search@2.9.9/dist/leaflet-search.min.js"></script>
+  <script src="https://unpkg.com/leaflet-search@2.9.9/dist/leaflet-search.min.js"></script>
+  
   <script>
         // ============================================================
     // Since we’re overlaying an SVG image (not a real map),
@@ -291,21 +292,6 @@
               markerLayer.addLayer(marker);
             });   // ends forEach
           }       // ends if
-          var searchControl = new L.Control.Search({
-      layer: markerLayer,           // The layer to search within
-      propertyName: 'title',        // Search field (uses marker.options.title)
-      initial: false,               // Don't prefill results on startup
-      marker: false,                // Don't create a new marker when searching
-      moveToLocation: function(latlng, title, map) {
-        // Define what happens when an item is found
-        // Here: zoom in and center on the found marker
-            map.setView(latlng, 15);
-        }
-      });
-        
-      // Add the search control to the map UI (defaults to top right)
-      map.addControl(searchControl);
-
         }         // ends function showMarkersIfZoom
 
         // Run once at startup
@@ -324,7 +310,21 @@
         // It automatically lists options as you type.
         // ============================================================
         
-      
+      var searchControl = new L.Control.Search({
+      layer: markerLayer,           // The layer to search within
+      propertyName: 'title',        // Search field (uses marker.options.title)
+      initial: false,               // Don't prefill results on startup
+      marker: false,                // Don't create a new marker when searching
+      moveToLocation: function(latlng, title, map) {
+        // Define what happens when an item is found
+        // Here: zoom in and center on the found marker
+            map.setView(latlng, 15);
+        }
+      });
+        
+      // Add the search control to the map UI (defaults to top right)
+      map.addControl(searchControl);
+        
       });
 
     

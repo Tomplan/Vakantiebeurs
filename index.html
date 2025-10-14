@@ -160,12 +160,25 @@
   <div id="map"></div>
   <div class="title-overlay">4x4 Vakantiebeurs</div>
   
-  <!-- Leaflet JS -->
+  <!-- 
+  ================================
+  LEAFLET LIBRARY SCRIPTS
+  ================================ -->
+  
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-  <!-- Leaflet Search plugin -->
+  
+  <!-- Search plugin for Leaflet -->
   <script src="https://unpkg.com/leaflet-control-search/dist/leaflet-search.min.js"></script>
   
   <script>
+        // ============================================================
+    // Since we’re overlaying an SVG image (not a real map),
+    // we use Leaflet’s “CRS.Simple” coordinate system.
+    // This allows using simple x/y coordinates instead of lat/lng.
+    // ------------------------------------------------------------
+
+    // These are the "dimensions" of your SVG map (the viewBox size).
+    // They define the coordinate system used by Leaflet in "CRS.Simple" mode.
     // === Configure SVG map bounds ===
     // These bounds should match your SVG's coordinate system.
     // For example, if your SVG's viewBox is "0 0 700 500":

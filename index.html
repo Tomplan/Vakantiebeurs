@@ -329,8 +329,8 @@
      // Open Markers Popup when searched for and found
 
       searchControl.on('search:locationfound', function(e) {
-     // e.layer.fire('click'); // Automatically open popup
-        e.openPopup()
+     e.layer.fire('click'); // Automatically open popup
+      //  e.openPopup()
       });
 
       });

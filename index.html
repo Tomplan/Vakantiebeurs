@@ -137,6 +137,7 @@ ht<!DOCTYPE html>
     const svgOverlay = L.imageOverlay('src/map.svg', imageBounds).addTo(map);
 
     // ======= Load standholders.json and add circles =======
+    
     // Each standholder should have x/y matching the SVG's viewBox
     fetch('src/data/standholders.json?v=' + Date.now())
       .then(response => response.json())
@@ -158,38 +159,45 @@ ht<!DOCTYPE html>
                 fillOpacity: 0.8,
                 weight: 2
               */
-              const marker = L.marker([stand.y, stand.x], {
-                title: stand.name,
-                riseOnHover: true,
-                draggable: true
+                const marker = L.marker([stand.y, stand.x], {
+                  title: stand.name,
+                  riseOnHover: true,
+                  draggable: true
+                });
+                
+                marker.bindPopup(`
+                  <img src=${stand.img} style="width:100px">
+                  <h2 style="margin:0;font-size:1.1em">${stand.name}</h2>
+                  <p><b>Stand:</b> ${stand.stand}</p>
+                  <p style="margin:0 0 0.5em 0">${stand.description}</p>
+                  ${stand.website ? `<a href="${stand.website}" target="_blank" style="color:#1976d2;text-decoration:underline;font-weight:bold;">Visit website</a>` : ''}
+                `);
+                
+                /*
+                marker.bindTooltip(stand.stand, {permanent: true, direction: 'center', className: 'stand-label', offset: [0,0]});
+                 */
+                marker.bindTooltip(stand.stand, {
+                  permanent: true, 
+                  direction: 'center', 
+                  className: 'stand-label',
+                  offset: [-15.5,-0.5],
+                  opacity: 1
+                });
+                
+                markerLayer.addLayer(marker);
               });
-              marker.bindPopup(`
-                <img src=${stand.img} style="width:100px">
-                <h2 style="margin:0;font-size:1.1em">${stand.name}</h2>
-                <p><b>Stand:</b> ${stand.stand}</p>
-                <p style="margin:0 0 0.5em 0">${stand.description}</p>
-                ${stand.website ? `<a href="${stand.website}" target="_blank" style="color:#1976d2;text-decoration:underline;font-weight:bold;">Visit website</a>` : ''}
-              `);
-              /*
-              marker.bindTooltip(stand.stand, {permanent: true, direction: 'center', className: 'stand-label', offset: [0,0]});
-               */
-              marker.bindTooltip(stand.stand, {
-                permanent: true, 
-                direction: 'center', 
-                className: 'stand-label',
-                offset: [-15.5,-0.5],
-                opacity: 1
-              });
-              
-              markerLayer.addLayer(marker);
-            });
+            // end forEach
           }
+          // end if
         }
 
         // Show/hide circles at startup and on zoom
         showMarkersIfZoom();
         map.on('zoomend', showMarkersIfZoom);
-       /* 
+      
+  });
+    // end showMarkersIfZoomed
+     
          // Add the search control
       var searchControl = new L.Control.Search({
       layer: markerLayer,
@@ -200,9 +208,7 @@ ht<!DOCTYPE html>
             map.setView(latlng, 15);
       });
       map.addControl(searchControl);
-      */
-  });
-    
+      
   </script>
 </body>
 </html>

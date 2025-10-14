@@ -320,14 +320,12 @@
       moveToLocation: function(latlng, title, map) {
         // Define what happens when an item is found
         // Here: zoom in and center on the found marker
-            map.setView(latlng, 2);
-  
-  }
-});
-map.addControl(searchControl);
-
-
-
+             map.setView(latlng, 15);
+        }
+      });
+        
+      // Add the search control to the map UI (defaults to top right)
+      map.addControl(searchControl);
    });
 
     

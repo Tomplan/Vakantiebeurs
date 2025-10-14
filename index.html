@@ -187,7 +187,7 @@
     // SouthWest corner (bottom left): [0, 0]
     // NorthEast corner (top right): [svgHeight, svgWidth] (Leaflet uses [lat, lng] i.e. [y, x])
 
-    // const imageBounds = [[0, 0], [svgHeight, svgWidth]];
+   //  const imageBounds = [[0, 0], [svgHeight, svgWidth]];
 
 
     // ============================================================
@@ -220,7 +220,7 @@ var terrainMap2 = L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_terrain
 });
 	   terrainMap.addTo(map);
 
-
+const imageBounds = [[51.896300040070415, 5.768743726810539], [51.90076398574364, 5.788840459930832]];
 	  // 51.896300040070415, 5.768743726810539 left corner bottom
 	  // 51.90076398574364, 5.788840459930832 right corner top
 	  
@@ -239,7 +239,7 @@ var terrainMap2 = L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_terrain
     // This acts like a tile layer, but with your own map artwork.
     // Add the SVG map as image overlay
 
-   // const svgOverlay = L.imageOverlay('src/map.svg', imageBounds).addTo(map);
+    const svgOverlay = L.imageOverlay('src/map.svg', imageBounds).addTo(map);
     
     // ============================================================
     // 3. LOAD STANDHOLDER DATA FROM JSON

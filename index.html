@@ -319,6 +319,7 @@
     });
 
     map.addControl(searchControl);
+    .catch(err => console.error('Error loading standholders:', err));  // Catch any fetch or JSON errors
   </script>
 </body>
 </html>

@@ -197,17 +197,21 @@
     // Create the Leaflet map in "Simple CRS" mode
     // This mode uses a flat coordinate plane instead of latitude/longitude.
     // Create the Leaflet map using the SVG coordinate system
+var map = L.map('map').setView([51.505, -0.09], 13);
 
-    const map = L.map('map', {
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+ //   const map = L.map('map', {
       //crs: L.CRS.Simple,
-      minZoom: -1,
-      maxZoom: 2,
-      zoom: -1,
-      center: [svgHeight/2, svgWidth/2], // center of the SVG
-      zoomControl: true,
+ //     minZoom: -1,
+ //     maxZoom: 2,
+ //     zoom: -1,
+ //     center: [svgHeight/2, svgWidth/2], // center of the SVG
+ //     zoomControl: true,
       //setView([0,0],1),
       //fitbounds([[0, 0], [4000, 2000]])
-    }).setView([900,1200],0.2);
+ //   }).setView([900,1200],0.2);
 
     // Overlay the SVG as the background image for the map
     // This acts like a tile layer, but with your own map artwork.

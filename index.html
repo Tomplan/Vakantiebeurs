@@ -292,11 +292,11 @@
               // Bind a permanent label showing the stand number
               
               marker.bindTooltip(stand.stand, {
-                permanent: true, 
-                direction: 'center', 
-                className: 'stand-label',
-                offset: [-15.5,-0.5],
-                opacity: 1
+                permanent: true,           // Always visible
+                direction: 'center',       // Centered on the marker
+                className: 'stand-label',  // CSS class for styling
+                offset: [-15.5,-0.5],      // offset
+                opacity: 1                 // Fully visible
               });
               
               markerLayer.addLayer(marker);

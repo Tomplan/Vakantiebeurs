@@ -23,16 +23,15 @@
   <!-- ============================================
        LEAFLET SEARCH PLUGIN STYLESHEET
        ============================================ -->
-  /*
+  
   <link rel="stylesheet" href="https://unpkg.com/leaflet-control-search/dist/leaflet-search.min.css" />
-  */
+  
   
   <style>
     
     /* ============================================
        BASIC PAGE & MAP STYLING
        ============================================ */
-
     html, body {
       height: 100%;
       margin: 0;
@@ -223,6 +222,7 @@
     // ]
     // The “?v=Date.now()” ensures browsers don’t cache old data.
     // ============================================================
+ /*
 
     // Each standholder should have x/y matching the SVG's viewBox
     fetch('src/data/standholders.json?v=' + Date.now())
@@ -255,13 +255,6 @@
                   riseOnHover: true, // Visually lift on hover
                   draggable: true    // optional: allows manual repositioning
                 });
-                /* 
-                radius: 10,
-                color: "#1976d2",
-                fillColor: "#1976d2",
-                fillOpacity: 0.8,
-                weight: 2
-              */
               
               // Bind a popup that appears when the marker is clicked
                 marker.bindPopup(`
@@ -321,8 +314,9 @@
       // Add the search control to the map UI (defaults to top right)
       map.addControl(searchControl);
   */
-  }); 
+//  }); 
     // end fetch standholders
+    
      .catch(err => console.error('Error loading standholders:', err));  // Catch any fetch or JSON errors
   </script>
 </body>

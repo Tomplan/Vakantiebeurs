@@ -197,11 +197,13 @@
     // Create the Leaflet map in "Simple CRS" mode
     // This mode uses a flat coordinate plane instead of latitude/longitude.
     // Create the Leaflet map using the SVG coordinate system
-var map = L.map('map').setView([51.899348015940426, 5.772192726810645], 13);
+var map = L.map('map').setView([51.899348015940426, 5.772192726810645], 5);
 
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
+
+    
  //   const map = L.map('map', {
       //crs: L.CRS.Simple,
  //     minZoom: -1,

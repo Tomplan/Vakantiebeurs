@@ -6,6 +6,8 @@ ht<!DOCTYPE html>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" ">
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <!-- Leaflet Search plugin -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-search/dist/leaflet-search.min.css" />
   <style>
     html, body {
       height: 100%;
@@ -102,6 +104,9 @@ ht<!DOCTYPE html>
   
   <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <!-- Leaflet Search plugin -->
+  <script src="https://unpkg.com/leaflet-control-search/dist/leaflet-search.min.js"></script>
+  
   <script>
     // === Configure SVG map bounds ===
     // These bounds should match your SVG's coordinate system.
@@ -184,6 +189,15 @@ ht<!DOCTYPE html>
         showMarkersIfZoom();
         map.on('zoomend', showMarkersIfZoom);
       });
+     // Add the search control
+    var searchControl = new L.Control.Search({
+      layer: markerLayer,
+      initial: false,
+      zoom: 14,
+      marker: false
+    });
+
+    map.addControl(searchControl);
   </script>
 </body>
 </html>

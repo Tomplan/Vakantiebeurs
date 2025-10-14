@@ -240,9 +240,17 @@
     fetch('src/data/standholders.json?v=' + Date.now())
       .then(response => response.json())
       .then(standholders => {
-        const markerLayer = L.layerGroup().addTo(map);
+        // ============================================================
+        // 4. CREATE MARKERS FROM JSON DATA
+        // ============================================================
+        
+        // This LayerGroup will hold all stand markers
 
+        const markerLayer = L.layerGroup().addTo(map);
+        
+        // Function to show/hide markers based on zoom level
         function showMarkersIfZoom() {
+          
           markerLayer.clearLayers();
           // Show circles only if zoom >= 1 (adjust as needed)
           if (map.getZoom() >= -1) {

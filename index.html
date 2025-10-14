@@ -311,16 +311,32 @@
         
         // Update marker visibility whenever zoom changes
         map.on('zoomend', showMarkersIfZoom);
-      });
-     // Add the search control
-    var searchControl = new L.Control.Search({
-      layer: markerLayer,
-      initial: false,
-      zoom: 14,
-      marker: false
-    });
+                
+        // ============================================================
+        // 5. ADD SEARCH CONTROL
+        // ============================================================
+        // The Leaflet Search plugin allows you to search
+        // through a layer by a specific property (here: "title").
+        // It automatically lists options as you type.
+        // ============================================================
 
-    map.addControl(searchControl);
+      var searchControl = new L.Control.Search({
+      layer: markerLayer,           // The layer to search within
+      propertyName: 'title',        // Search field (uses marker.options.title)
+      initial: false,               // Don't prefill results on startup
+      marker: false,                // Don't create a new marker when searching
+      moveToLocation: function(latlng, title, map) {
+        // Define what happens when an item is found
+        // Here: zoom in and center on the found marker
+            map.setView(latlng, 15);
+        }
+      });
+        
+      // Add the search control to the map UI (defaults to top right)
+      map.addControl(searchControl);
+
+      });
+
     
   </script>
 </body>

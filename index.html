@@ -3,12 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <title>4x4 Vakantiebeurs Map (Leaflet + SVG)</title>
+  <!-- 
+    ============================================
+    META: RESPONSIVENESS & VIEWPORT SETTINGS
+    ============================================
+    The viewport meta tag ensures the map displays properly
+    across different screen sizes. 
+    - "maximum-scale=1.0" prevents users from zooming in manually on mobile.
+    - "user-scalable=no" disables pinch zoom.
+  -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" ">
-  <!-- Leaflet CSS -->
+  
+  <!-- ============================================
+       LEAFLET CORE STYLESHEET (required)
+       ============================================ -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <!-- Leaflet Search plugin -->
+  
+  <!-- ============================================
+       LEAFLET SEARCH PLUGIN STYLESHEET
+       ============================================ -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet-control-search/dist/leaflet-search.min.css" />
+  
   <style>
+  /* ============================================
+   BASIC PAGE & MAP STYLING
+  ============================================ */
+
     html, body {
       height: 100%;
       margin: 0;

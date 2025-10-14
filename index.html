@@ -22,6 +22,7 @@
   <!-- ============================================
        LEAFLET SEARCH PLUGIN STYLESHEET
        ============================================ -->
+  
   <link rel="stylesheet" href="https://unpkg.com/leaflet-control-search/dist/leaflet-search.min.css" />
   
   <style>
@@ -319,9 +320,10 @@
         // through a layer by a specific property (here: "title").
         // It automatically lists options as you type.
         // ============================================================
-
+      var searchLayer = L.featureGroup().addTo(map);
+        
       var searchControl = new L.Control.Search({
-      layer: markerLayer,           // The layer to search within
+      layer: searchLayer,           // The layer to search within
       propertyName: 'title',        // Search field (uses marker.options.title)
       initial: false,               // Don't prefill results on startup
       marker: false,                // Don't create a new marker when searching

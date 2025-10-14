@@ -198,7 +198,15 @@
 
     const imageBounds = [[0, 0], [svgHeight, svgWidth]];
 
+
+    // ============================================================
+    // 2. INITIALIZE THE MAP
+    // ============================================================
+
+    // Create the Leaflet map in "Simple CRS" mode
+    // This mode uses a flat coordinate plane instead of latitude/longitude.
     // Create the Leaflet map using the SVG coordinate system
+
     const map = L.map('map', {
       crs: L.CRS.Simple,
       minZoom: -1,

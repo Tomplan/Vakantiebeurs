@@ -160,43 +160,7 @@
   <script src="https://unpkg.com/leaflet-search@2.9.9/dist/leaflet-search.min.js"></script>
   
   <script>
-        // ============================================================
-    // Since we’re overlaying an SVG image (not a real map),
-    // we use Leaflet’s “CRS.Simple” coordinate system.
-    // This allows using simple x/y coordinates instead of lat/lng.
-    // ------------------------------------------------------------
-
-    // These are the "dimensions" of your SVG map (the viewBox size).
-    // They define the coordinate system used by Leaflet in "CRS.Simple" mode.
-    // === Configure SVG map bounds ===
-    // These bounds should match your SVG's coordinate system.
-    // For example, if your SVG's viewBox is "0 0 700 500":
-    
-   // const svgWidth = 4000;
-  //  const svgHeight = 2000;
-    
-   // The image bounds tell Leaflet how large and where to draw your SVG.
-    // Format: [[southWestLat, southWestLng], [northEastLat, northEastLng]]
-    // Because we’re in flat mode, these are just y/x pairs.
-    // The SVG will be placed as an "image overlay" with the following corners:
-    // Leaflet expects bounds in the form [[southWestY, southWestX], [northEastY, northEastX]]
-    // Leaflet image overlay bounds: [[southWestLat, southWestLng], [northEastLat, northEastLng]]
-    // We'll set the image overlay so that [0,0] is bottom left, [700,500] is top right.
-    // We'll use a simple "pseudo-coordinates" system for the SVG: y increases upward, x to right.
-    // Note: These are not real lat/lng. They are just for overlaying your SVG and markers.
-    // SouthWest corner (bottom left): [0, 0]
-    // NorthEast corner (top right): [svgHeight, svgWidth] (Leaflet uses [lat, lng] i.e. [y, x])
-
-   //  const imageBounds = [[0, 0], [svgHeight, svgWidth]];
-
-
-    // ============================================================
-    // 2. INITIALIZE THE MAP
-    // ============================================================
-
-    // Create the Leaflet map in "Simple CRS" mode
-    // This mode uses a flat coordinate plane instead of latitude/longitude.
-    // Create the Leaflet map using the SVG coordinate system
+     
 var map = L.map('map').setView([51.89808547622925, 5.773899908908296], 29);
 
     var terrainMap = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png', {
@@ -205,27 +169,7 @@ var map = L.map('map').setView([51.89808547622925, 5.773899908908296], 29);
 	maxZoom: 35
 });
 	   terrainMap.addTo(map);
-
-// const imageBounds = [[51.89437582528647, 5.765378707570809], [51.90279080485798, 5.790349961571316]];
-	  // 51.8943217320389, 5.76744803036467 left corner bottom 51.89462556558981, 5.761847401310146
-	  // 51.90076398574364, 5.788840459930832 right corner top
-	  
- //   const map = L.map('map', {
-      //crs: L.CRS.Simple,
- //     minZoom: -1,
- //     maxZoom: 2,
- //     zoom: -1,
- //     center: [svgHeight/2, svgWidth/2], // center of the SVG
- //     zoomControl: true,
-      //setView([0,0],1),
-      //fitbounds([[0, 0], [4000, 2000]])
- //   }).setView([900,1200],0.2);
-
-    // Overlay the SVG as the background image for the map
-    // This acts like a tile layer, but with your own map artwork.
-    // Add the SVG map as image overlay
-
-  //  const svgOverlay = L.imageOverlay('src/map.svg', imageBounds).addTo(map);
+/*
     
     // ============================================================
     // 3. LOAD STANDHOLDER DATA FROM JSON
@@ -283,7 +227,7 @@ var map = L.map('map').setView([51.89808547622925, 5.773899908908296], 29);
                 fillOpacity: 0.8,
                 weight: 2
               */
-              
+   /*           
               // Bind a popup that appears when the marker is clicked
               marker.bindPopup(`
                 <img src=${stand.img} style="width:100px">

@@ -71,12 +71,23 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
+
+    /* Responsive font scaling for mobile */
     @media (max-width: 600px) {
       .title-overlay {
         font-size: 1em;
         padding: 0.3em 0.7em;
       }
     }
+    /* 
+    ============================================
+    DEVICE ORIENTATION MESSAGE (Portrait Warning)
+    ============================================
+    - Blurs the map when the device is held vertically.
+    - Displays a message asking to rotate the device.
+    */
+
+    
     @media only screen and (orientation: portrait) {
       #map {
         filter: blur(5px);

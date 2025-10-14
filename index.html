@@ -141,8 +141,9 @@ ht<!DOCTYPE html>
     fetch('src/data/standholders.json?v=' + Date.now())
       .then(response => response.json())
       .then(standholders => {
+        // add layer
         const markerLayer = L.layerGroup().addTo(map);
-
+        // add markers on zoom
         function showMarkersIfZoom() {
           markerLayer.clearLayers();
           // Show circles only if zoom >= 1 (adjust as needed)
@@ -188,16 +189,19 @@ ht<!DOCTYPE html>
         // Show/hide circles at startup and on zoom
         showMarkersIfZoom();
         map.on('zoomend', showMarkersIfZoom);
-      });
-     // Add the search control
-    var searchControl = new L.Control.Search({
+        
+         // Add the search control
+      var searchControl = new L.Control.Search({
       layer: markerLayer,
+      propertyName: 'name'
       initial: false,
-      zoom: 14,
-      marker: false
-    });
-
-    map.addControl(searchControl);
+      marker: false,
+      moveToLocation: function(latlng, title, map) {
+            map.setView(latlng, 15);
+      });
+      map.addControl(searchControl);
+  });
+    
   </script>
 </body>
 </html>

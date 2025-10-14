@@ -333,6 +333,11 @@
       map.addControl(searchControl);
 
       // Open Markers Popup when searched for and found
+
+        searchControl.on('search:locationfound', function(e) {
+  e.layer.fire('click'); // Automatically open popup
+});
+      /*
       // Listen for search result
       searchControl.on('search:locationfound', function(e) {
       lastFoundMarker = e.layer; // In case you want to get it here too
@@ -345,6 +350,7 @@
       lastFoundMarker = null; // Reset so it only happens once
       }
       });
+      */
    });
 
     

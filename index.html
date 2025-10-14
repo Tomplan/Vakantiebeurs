@@ -319,7 +319,6 @@
         // Define what happens when an item is found
         // Here: zoom in and center on the found marker
             map.setView(latlng, 2);
-
         }
       });
         
@@ -330,7 +329,8 @@
      // Open Markers Popup when searched for and found
 
       searchControl.on('search:locationfound', function(e) {
-      e.layer.fire('click'); // Automatically open popup
+     // e.layer.fire('click'); // Automatically open popup
+        e.openPopup()
       });
 
       });

@@ -258,21 +258,24 @@
           // (here always true, but you can adjust for performance)
           // Show circles only if zoom >= 1 (adjust as needed)
           if (map.getZoom() >= -1) {
+            // Loop through every stand object in the JSON
             standholders.forEach(stand => {
+              // Leaflet uses [lat, lng], so in our flat system: [y, x]
               // Convert SVG x/y to Leaflet pseudo-lat/lng
-              // Leaflet uses [lat, lng] so [y, x]
-             /* 
+
+             
+              const marker = L.marker([stand.y, stand.x], {
+                title: stand.name,
+                riseOnHover: true,
+                draggable: true
+              });
+              /* 
                 radius: 10,
                 color: "#1976d2",
                 fillColor: "#1976d2",
                 fillOpacity: 0.8,
                 weight: 2
               */
-              const marker = L.marker([stand.y, stand.x], {
-                title: stand.name,
-                riseOnHover: true,
-                draggable: true
-              });
               marker.bindPopup(`
                 <img src=${stand.img} style="width:100px">
                 <h2 style="margin:0;font-size:1.1em">${stand.name}</h2>

@@ -271,7 +271,7 @@ var map = L.map('map').setView([51.89808547622925, 5.773899908908296], 29);
               // Leaflet uses [lat, lng], so in our flat system: [y, x]
               // Convert SVG x/y to Leaflet pseudo-lat/lng
 
-              const marker = L.marker([stand.y, stand.x], {
+              const marker = L.marker([stand.lng, stand.lat], {
                 title: stand.name,
                 riseOnHover: true,
                 draggable: true

@@ -309,7 +309,8 @@
         // through a layer by a specific property (here: "title").
         // It automatically lists options as you type.
         // ============================================================
-        
+
+      var lastFoundMarker = null;
       var searchControl = new L.Control.Search({
       layer: markerLayer,           // The layer to search within
       propertyName: 'title',        // Search field (uses marker.options.title)
@@ -320,16 +321,29 @@
         // Define what happens when an item is found
         // Here: zoom in and center on the found marker
             map.setView(latlng, 15);
-        }
+      // Store for later click
+      markerLayer.eachLayer(function(layer) {
+      if (layer.options.title === title) {
+        lastFoundMarker = layer;
+      }
       });
-        
+    }
+    });
       // Add the search control to the map UI (defaults to top right)
       map.addControl(searchControl);
 
       // Open Markers Popup when searched for and found
-        
+      // Listen for search result
       searchControl.on('search:locationfound', function(e) {
-      e.layer.fire('click'); // Automatically open popup
+      lastFoundMarker = e.layer; // In case you want to get it here too
+      });
+
+      // After the zoom, open the popup
+      map.on('zoomend', function() {
+      if (lastFoundMarker) {
+      lastFoundMarker.fire('click');
+      lastFoundMarker = null; // Reset so it only happens once
+      }
       });
    });
 

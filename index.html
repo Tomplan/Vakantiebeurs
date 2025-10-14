@@ -319,7 +319,7 @@
         // Define what happens when an item is found
         // Here: zoom in and center on the found marker
             map.setView(latlng, 15);
-            map.fire('click');
+            latlng.fire('click');
         }
       });
         

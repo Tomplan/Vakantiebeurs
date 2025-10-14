@@ -1,4 +1,4 @@
-ht<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   
@@ -210,14 +210,10 @@ ht<!DOCTYPE html>
         // Show/hide circles at startup and on zoom
         showMarkersIfZoom();
         map.on('zoomend', showMarkersIfZoom);
-      
-  });
-    // end fetch standholders
-     
          // Add the search control
       var searchControl = new L.Control.Search({
       layer: markerLayer,
-      propertyName: 'title'
+      propertyName: 'title',
       initial: false,
       marker: false,
       moveToLocation: function(latlng, title, map) {
@@ -225,6 +221,10 @@ ht<!DOCTYPE html>
         }
       });
       map.addControl(searchControl);
+      
+  });
+    // end fetch standholders
+     
       
   </script>
 </body>

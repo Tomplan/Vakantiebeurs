@@ -310,44 +310,23 @@
         // It automatically lists options as you type.
         // ============================================================
 
-      var lastFoundMarker = null;
-      var needToOpenPopup = false; // State flag
-
+ 
       var searchControl = new L.Control.Search({
       layer: markerLayer,           // The layer to search within
       propertyName: 'title',        // Search field (uses marker.options.title)
       initial: false,               // Don't prefill results on startup
-      marker: false,                // Don't create a new marker when searching
+      marker: true,                // popup open
       // animate: true,
       moveToLocation: function(latlng, title, map) {
         // Define what happens when an item is found
         // Here: zoom in and center on the found marker
             map.setView(latlng, 2);
-  // Find the marker by title and store
-    markerLayer.eachLayer(function(layer) {
-      if (layer.options.title === title) {
-        lastFoundMarker = layer;
-        needToOpenPopup = true; // Set flag to open popup after zoom
-      }
-    });
+  
   }
 });
 map.addControl(searchControl);
 
-// Listen for search result, ensure lastFoundMarker is set
-searchControl.on('search:locationfound', function(e) {
-  lastFoundMarker = e.layer;
-  needToOpenPopup = true;
-});
 
-// After zoom, open the popup if needed
-map.on('zoomend', function() {
-  if (lastFoundMarker && needToOpenPopup) {
-    lastFoundMarker.fire('click');
-    needToOpenPopup = false; // Reset flag
-    lastFoundMarker = null;  // Reset marker
-  }
-});
 
    });
 

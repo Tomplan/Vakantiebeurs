@@ -1,13 +1,17 @@
 ht<!DOCTYPE html>
 <html lang="en">
 <head>
+  
   <meta charset="UTF-8">
   <title>4x4 Vakantiebeurs Map (Leaflet + SVG)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" ">
+  
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  
   <!-- Leaflet Search plugin -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet-control-search/dist/leaflet-search.min.css" />
+  
   <style>
     html, body {
       height: 100%;
@@ -16,11 +20,13 @@ ht<!DOCTYPE html>
       font-family: 'Segoe UI', Arial, sans-serif;
       background: #f6f6f6;
     }
+    
     #map {
       width: 100vw;
       height: 100%;
       z-index: 1;
     }
+    
     .title-overlay {
       position: absolute;
       top: 5%;
@@ -41,12 +47,14 @@ ht<!DOCTYPE html>
       overflow: hidden;
       text-overflow: ellipsis;
     }
+    
     @media (max-width: 600px) {
       .title-overlay {
         font-size: 1em;
         padding: 0.3em 0.7em;
       }
     }
+    
     @media only screen and (orientation: portrait) {
       #map {
         filter: blur(5px);
@@ -70,12 +78,14 @@ ht<!DOCTYPE html>
         filter: none;
       }
     }
+    
     @media only screen and (orientation: portrait) and (max-width: 600px) {
       body::before {
         font-size: 0.85em;
         padding: 0.5em;
       }
     }
+    
     /* Tooltip Stand label styles */
     /* 
     background: #1976d2;
@@ -97,13 +107,16 @@ ht<!DOCTYPE html>
     }
    
   </style>
+  
 </head>
+  
 <body>
   <div id="map"></div>
   <div class="title-overlay">4x4 Vakantiebeurs</div>
   
   <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  
   <!-- Leaflet Search plugin -->
   <script src="https://unpkg.com/leaflet-control-search/dist/leaflet-search.min.js"></script>
   
@@ -142,8 +155,10 @@ ht<!DOCTYPE html>
     fetch('src/data/standholders.json?v=' + Date.now())
       .then(response => response.json())
       .then(standholders => {
+        
         // add layer
         const markerLayer = L.layerGroup().addTo(map);
+        
         // add markers on zoom
         function showMarkersIfZoom() {
           markerLayer.clearLayers();
@@ -190,13 +205,14 @@ ht<!DOCTYPE html>
           }
           // end if
         }
-
+        // end function showMarkersIfZoom
+        
         // Show/hide circles at startup and on zoom
         showMarkersIfZoom();
         map.on('zoomend', showMarkersIfZoom);
       
   });
-    // end showMarkersIfZoomed
+    // end fetch standholders
      
          // Add the search control
       var searchControl = new L.Control.Search({
@@ -209,7 +225,7 @@ ht<!DOCTYPE html>
         }
       });
       map.addControl(searchControl);
-      });
+      
   </script>
 </body>
 </html>

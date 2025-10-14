@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  
   <meta charset="UTF-8">
   <title>4x4 Vakantiebeurs Map (Leaflet + SVG)</title>
+  
+  <!-- 
+    The meta viewport tag makes the map responsive
+    - "maximum-scale=1.0" prevents zooming on mobile
+  -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" ">
   
-  <!-- Leaflet CSS -->
+  <!-- ==================== LEAFLET CORE STYLES ==================== -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   
-  <!-- Leaflet Search plugin -->
+  <!-- ==================== LEAFLET SEARCH PLUGIN STYLES ==================== -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet-control-search/dist/leaflet-search.min.css" />
   
   <style>
+    
+    /* ====== BASIC PAGE LAYOUT ====== */
     html, body {
       height: 100%;
       margin: 0;
@@ -21,12 +27,14 @@
       background: #f6f6f6;
     }
     
+    /* The map fills the full screen */
     #map {
       width: 100vw;
       height: 100%;
       z-index: 1;
     }
-    
+
+    /* ====== TITLE OVERLAY (Top Center Text) ====== */
     .title-overlay {
       position: absolute;
       top: 5%;
@@ -86,12 +94,9 @@
       }
     }
     
-    /* Tooltip Stand label styles */
+    /* ====== TOOLTIP STYLE FOR STAND LABELS ====== */
+
     /* 
-    background: #1976d2;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.13);
-    border: 2px solid #fff;
-    
       border-radius: 100%;
     */
     .stand-label {
@@ -111,75 +116,108 @@
 </head>
   
 <body>
+  <!-- Container for the Leaflet map -->
   <div id="map"></div>
+
+  <!-- Title text displayed over the map -->
   <div class="title-overlay">4x4 Vakantiebeurs</div>
   
-  <!-- Leaflet JS -->
+  <!-- ==================== LEAFLET JS CORE ==================== -->
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   
-  <!-- Leaflet Search plugin -->
+  <!-- ==================== LEAFLET SEARCH PLUGIN ==================== -->
   <script src="https://unpkg.com/leaflet-control-search/dist/leaflet-search.min.js"></script>
   
   <script>
-    // === Configure SVG map bounds ===
-    // These bounds should match your SVG's coordinate system.
-    // For example, if your SVG's viewBox is "0 0 700 500":
+    // ============================================================
+    // SECTION 1. DEFINE MAP COORDINATE SYSTEM (using the SVG as a map)
+    // ============================================================
+
+    // These are the "dimensions" of your SVG map (the viewBox size).
+    // They define the coordinate system used by Leaflet in "CRS.Simple" mode.
     const svgWidth = 4000;
     const svgHeight = 2000;
+
+    // The SVG will be placed as an "image overlay" with the following corners:
+    // Leaflet expects bounds in the form [[southWestY, southWestX], [northEastY, northEastX]]
     // Leaflet image overlay bounds: [[southWestLat, southWestLng], [northEastLat, northEastLng]]
     // We'll set the image overlay so that [0,0] is bottom left, [700,500] is top right.
     // We'll use a simple "pseudo-coordinates" system for the SVG: y increases upward, x to right.
     // Note: These are not real lat/lng. They are just for overlaying your SVG and markers.
-
     // SouthWest corner (bottom left): [0, 0]
     // NorthEast corner (top right): [svgHeight, svgWidth] (Leaflet uses [lat, lng] i.e. [y, x])
     const imageBounds = [[0, 0], [svgHeight, svgWidth]];
+    
+    // ============================================================
+    // SECTION 2. INITIALIZE LEAFLET MAP
+    // ============================================================
 
+    // Create the Leaflet map in "Simple CRS" mode
+    // This mode uses a flat coordinate plane instead of latitude/longitude.
     // Create the Leaflet map using the SVG coordinate system
     const map = L.map('map', {
-      crs: L.CRS.Simple,
-      minZoom: -1,
-      maxZoom: 2,
-      zoom: -1,
+      crs: L.CRS.Simple,       // Use flat coordinates (not geographic)
+      minZoom: -1,             // Minimum zoom level
+      maxZoom: 2,              // Maximum zoom level
+      zoom: -1,                // Starting zoom
       center: [svgHeight/2, svgWidth/2], // center of the SVG
       zoomControl: true,
       //fitbounds([[0, 0], [4000, 2000]])
     });
 
+    
+    // Overlay the SVG as the background image for the map
+    // This acts like a tile layer, but with your own map artwork.
     // Add SVG as image overlay
     const svgOverlay = L.imageOverlay('src/map.svg', imageBounds).addTo(map);
 
-    // ======= Load standholders.json and add circles =======
-    
+    // ============================================================
+    // SECTION 3. LOAD MARKER DATA FROM JSON
+    // ============================================================
+
+    // The JSON file contains all standholder data, such as:
+    // [ { "name": "Stand A", "x": 1000, "y": 800, "stand": "12A", "description": "...", "img": "..." }, ... ]
+    // A timestamp query string (?v=...) prevents caching issues on GitHub Pages.
     // Each standholder should have x/y matching the SVG's viewBox
     fetch('src/data/standholders.json?v=' + Date.now())
-      .then(response => response.json())
+      .then(response => response.json())  // Convert HTTP response to JSON
       .then(standholders => {
-        
-        // add layer
+        // ============================================================
+        // SECTION 4. CREATE MARKER LAYER
+        // ============================================================
+
+        // This LayerGroup will hold all stand markers
         const markerLayer = L.layerGroup().addTo(map);
         
-        // add markers on zoom
+        // Function to show/hide markers based on zoom level
         function showMarkersIfZoom() {
+          // Remove any existing markers before redrawing
           markerLayer.clearLayers();
+          
+          // Example condition: Only show markers at or above a certain zoom
+          // (here always true, but you can adjust for performance)
           // Show circles only if zoom >= 1 (adjust as needed)
           if (map.getZoom() >= -1) {
+            // Loop through every stand object in the JSON
             standholders.forEach(stand => {
+              
+              // Leaflet uses [lat, lng], so in our flat system: [y, x]
               // Convert SVG x/y to Leaflet pseudo-lat/lng
-              // Leaflet uses [lat, lng] so [y, x]
-             /* 
+             
+                const marker = L.marker([stand.y, stand.x], {
+                  title: stand.name, // The name (used for the search control)
+                  riseOnHover: true, // Visually lift on hover
+                  draggable: true
+                });
+                /* 
                 radius: 10,
                 color: "#1976d2",
                 fillColor: "#1976d2",
                 fillOpacity: 0.8,
                 weight: 2
               */
-                const marker = L.marker([stand.y, stand.x], {
-                  title: stand.name,
-                  riseOnHover: true,
-                  draggable: true
-                });
-                
+              
+              // Popup that appears when clicking a stand marker
                 marker.bindPopup(`
                   <img src=${stand.img} style="width:100px">
                   <h2 style="margin:0;font-size:1.1em">${stand.name}</h2>
@@ -187,18 +225,18 @@
                   <p style="margin:0 0 0.5em 0">${stand.description}</p>
                   ${stand.website ? `<a href="${stand.website}" target="_blank" style="color:#1976d2;text-decoration:underline;font-weight:bold;">Visit website</a>` : ''}
                 `);
-                
-                /*
-                marker.bindTooltip(stand.stand, {permanent: true, direction: 'center', className: 'stand-label', offset: [0,0]});
-                 */
+
+              
+              // Small text label permanently visible on the map (the stand number)
                 marker.bindTooltip(stand.stand, {
-                  permanent: true, 
-                  direction: 'center', 
-                  className: 'stand-label',
-                  offset: [-15.5,-0.5],
-                  opacity: 1
+                  permanent: true,             // Always visible
+                  direction: 'center',         // Centered on the marker
+                  className: 'stand-label',    // CSS class for styling
+                  offset: [-15.5,-0.5],        // offset
+                  opacity: 1                   // Fully visible
                 });
-                
+
+                // Add this marker to the group
                 markerLayer.addLayer(marker);
               });
             // end forEach
@@ -206,26 +244,38 @@
           // end if
         }
         // end function showMarkersIfZoom
-        
+
+        // Run once at startup
         // Show/hide circles at startup and on zoom
         showMarkersIfZoom();
+        
+        // Update marker visibility whenever zoom changes
         map.on('zoomend', showMarkersIfZoom);
+
+        // ============================================================
+        // SECTION 5. ADD SEARCH CONTROL
+        // ============================================================
+
+        // Create the search box that filters through markerLayer
+        // The plugin will search marker "title" property (the stand name)
          // Add the search control
       var searchControl = new L.Control.Search({
-      layer: markerLayer,
-      propertyName: 'title',
-      initial: false,
-      marker: false,
+      layer: markerLayer,           // The layer to search within
+      propertyName: 'title',        // Search field (uses marker.options.title)
+      initial: false,               // Don't prefill results on startup
+      marker: false,                // Don't create a new marker when searching
       moveToLocation: function(latlng, title, map) {
+        // Define what happens when an item is found
+        // Here: zoom in and center on the found marker
             map.setView(latlng, 15);
         }
       });
+        
+      // Add the search control to the map UI (defaults to top right)
       map.addControl(searchControl);
-      
   });
     // end fetch standholders
-     
-      
+     .catch(err => console.error('Error loading standholders:', err));  // Catch any fetch or JSON errors
   </script>
 </body>
 </html>

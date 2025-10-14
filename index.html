@@ -217,7 +217,10 @@
       //fitbounds([[0, 0], [4000, 2000]])
     });
 
-    // Add SVG as image overlay
+    // Overlay the SVG as the background image for the map
+    // This acts like a tile layer, but with your own map artwork.
+    // Add the SVG map as image overlay
+
     const svgOverlay = L.imageOverlay('src/map.svg', imageBounds).addTo(map);
 
     // ======= Load standholders.json and add circles =======

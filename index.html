@@ -251,7 +251,11 @@
         // Function to show/hide markers based on zoom level
         function showMarkersIfZoom() {
           
+          // Remove old markers before redrawing (prevents duplicates)
           markerLayer.clearLayers();
+          
+         // Example condition: Only show markers at or above a certain zoom
+          // (here always true, but you can adjust for performance)
           // Show circles only if zoom >= 1 (adjust as needed)
           if (map.getZoom() >= -1) {
             standholders.forEach(stand => {

@@ -203,7 +203,7 @@
       zoom: -1,
       center: [svgHeight/2, svgWidth/2], // center of the SVG
       zoomControl: true,
-      // setView: [0,0],1,
+      //setView([0,0],1),
       //fitbounds([[0, 0], [4000, 2000]])
     });
 
@@ -309,24 +309,23 @@
         // through a layer by a specific property (here: "title").
         // It automatically lists options as you type.
         // ============================================================
-
- 
+        
       var searchControl = new L.Control.Search({
       layer: markerLayer,           // The layer to search within
       propertyName: 'title',        // Search field (uses marker.options.title)
       initial: false,               // Don't prefill results on startup
-      marker: true,                // popup open
-      // animate: true,
+      marker: false,                // Don't create a new marker when searching
       moveToLocation: function(latlng, title, map) {
         // Define what happens when an item is found
         // Here: zoom in and center on the found marker
-             map.setView(latlng, 15);
+            map.setView(latlng, 15);
         }
       });
         
       // Add the search control to the map UI (defaults to top right)
       map.addControl(searchControl);
-   });
+        
+      });
 
     
   </script>

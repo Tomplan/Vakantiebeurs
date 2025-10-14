@@ -222,9 +222,21 @@
     // Add the SVG map as image overlay
 
     const svgOverlay = L.imageOverlay('src/map.svg', imageBounds).addTo(map);
+    
+    // ============================================================
+    // 3. LOAD STANDHOLDER DATA FROM JSON
+    // ============================================================
+    // The JSON file includes all exhibitors/stands, like:
+    // [
+    //   { "name": "Stand A", "x": 1000, "y": 800, "stand": "12A",
+    //     "description": "Example company", "img": "img/a.jpg" }
+    // ]
+    // The “?v=Date.now()” ensures browsers don’t cache old data.
+    // ============================================================
 
     // ======= Load standholders.json and add circles =======
     // Each standholder should have x/y matching the SVG's viewBox
+    
     fetch('src/data/standholders.json?v=' + Date.now())
       .then(response => response.json())
       .then(standholders => {

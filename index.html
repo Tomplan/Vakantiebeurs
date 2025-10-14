@@ -171,8 +171,10 @@
     // === Configure SVG map bounds ===
     // These bounds should match your SVG's coordinate system.
     // For example, if your SVG's viewBox is "0 0 700 500":
-    const svgWidth = 4000;
-    const svgHeight = 2000;
+    
+   // const svgWidth = 4000;
+  //  const svgHeight = 2000;
+    
    // The image bounds tell Leaflet how large and where to draw your SVG.
     // Format: [[southWestLat, southWestLng], [northEastLat, northEastLng]]
     // Because we’re in flat mode, these are just y/x pairs.
@@ -185,7 +187,7 @@
     // SouthWest corner (bottom left): [0, 0]
     // NorthEast corner (top right): [svgHeight, svgWidth] (Leaflet uses [lat, lng] i.e. [y, x])
 
-    const imageBounds = [[0, 0], [svgHeight, svgWidth]];
+    // const imageBounds = [[0, 0], [svgHeight, svgWidth]];
 
 
     // ============================================================
@@ -197,7 +199,7 @@
     // Create the Leaflet map using the SVG coordinate system
 
     const map = L.map('map', {
-      crs: L.CRS.Simple,
+      //crs: L.CRS.Simple,
       minZoom: -1,
       maxZoom: 2,
       zoom: -1,
@@ -211,7 +213,7 @@
     // This acts like a tile layer, but with your own map artwork.
     // Add the SVG map as image overlay
 
-    const svgOverlay = L.imageOverlay('src/map.svg', imageBounds).addTo(map);
+   // const svgOverlay = L.imageOverlay('src/map.svg', imageBounds).addTo(map);
     
     // ============================================================
     // 3. LOAD STANDHOLDER DATA FROM JSON

@@ -298,13 +298,15 @@
                 offset: [-15.5,-0.5],      // offset
                 opacity: 1                 // Fully visible
               });
-              
+              // Add this marker to the group
               markerLayer.addLayer(marker);
-            });
-          }
-        }
+            });   // ends forEach
+          }       // ends if
+        }         // ends function showMarkersIfZoom
 
+        // Run once at startup
         // Show/hide circles at startup and on zoom
+
         showMarkersIfZoom();
         map.on('zoomend', showMarkersIfZoom);
       });

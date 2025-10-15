@@ -253,7 +253,32 @@ var terrainMap2 = L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_terrain
 
     // ======= Load standholders.json and add circles =======
     // Each standholder should have x/y matching the SVG's viewBox
+		
+// ---- Helper: Calculate rectangle corners with rotation (degrees) ----
+function getRectangleCorners(center, width, height, angleDeg) {
+  // Center: [y, x], width and height in map units (meters in CRS.Simple, degrees in lat/lng)
+  // angleDeg: rotation in degrees (clockwise from "east"/x-axis)
+  var angleRad = angleDeg * Math.PI / 180;
+  var halfW = width / 2;
+  var halfH = height / 2;
 
+  // Rectangle corners relative to center, before rotation
+  var corners = [
+    [-halfH, -halfW], // SW
+    [-halfH, halfW],  // SE
+    [halfH, halfW],   // NE
+    [halfH, -halfW],  // NW
+  ];
+
+  // Apply rotation
+  return corners.map(function(offset) {
+    var y = center[0] + (offset[0] * Math.cos(angleRad) - offset[1] * Math.sin(angleRad));
+    var x = center[1] + (offset[0] * Math.sin(angleRad) + offset[1] * Math.cos(angleRad));
+    return [y, x];
+  });
+}
+// ends helper
+		
     fetch('src/data/standholders.json?v=' + Date.now())
       .then(response => response.json())
       .then(standholders => {
@@ -291,28 +316,36 @@ var terrainMap2 = L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_terrain
                 riseOnHover: true,
                 draggable: true
               });
-				// Function to create rectangle bounds centered at marker
-function getRectangleBounds(center, widthMeters, heightMeters, angleDegrees = 0) {
-    // Calculate corners relative to center, apply rotation if needed
-    // For brevity, not shown: you can use turf.js or write your own rotation math
-}
 
-// Create rectangle
-var rectBounds = getRectangleBounds(marker.getLatLng(), 6, 6);
-var rectangle = L.rectangle(rectBounds, {color: "#ffffff", weight: 1}).addTo(map);
+				
+  // Initial rectangle corners (unrotated)
+  var rectCorners = getRectangleCorners([stand.y, stand.x], 6, 6, 0);
+  var rectangle = L.polygon(rectCorners, {color: "#1976d2", weight: 1}).addTo(map);
 
-// Attach transform plugin
-rectangle.transform.enable({rotation: true, scaling: false, center: marker.getLatLng()});
+  // --- Sync rectangle on marker drag ---
+  marker.on('move', function(e) {
+    var center = [e.latlng.lat, e.latlng.lng];
+    // Get current rectangle rotation (stored as property)
+    var angle = rectangle._angle || 0;
+    var newCorners = getRectangleCorners(center, 6, 6, angle);
+    rectangle.setLatLngs(newCorners);
+    rectangle._center = center;
+  });
 
-// When marker is dragged, update rectangle
-marker.on('move', function(e) {
-    var newCenter = e.latlng;
-    var currentAngle = rectangle.transform._rotation || 0; // Get current rotation
-    var rectBounds = getRectangleBounds(newCenter, 6, 6, currentAngle);
-    rectangle.setBounds(rectBounds);
-    rectangle.transform.options.center = newCenter; // Update transform origin
-});
+  // --- Enable rotation via path-transform plugin ---
+  rectangle.transform.enable({rotation: true, scaling: false});
+  rectangle._center = [stand.y, stand.x];
+  rectangle._angle = 0;
 
+  // When rectangle is rotated, update its stored angle and redraw at correct center
+  rectangle.on('transformed', function(e) {
+    // e.layer.transform._rotation is in radians
+    var angle = e.layer.transform._rotation * (180/Math.PI);
+    rectangle._angle = angle;
+    var center = rectangle._center || [stand.y, stand.x];
+    var newCorners = getRectangleCorners(center, 6, 6, angle);
+    rectangle.setLatLngs(newCorners);
+  });
               /* 
                 radius: 10,
                 color: "#1976d2",

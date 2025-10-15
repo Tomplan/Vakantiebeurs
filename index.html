@@ -11,7 +11,7 @@
       width: 10px;
       height: 10px;
       box-shadow: 0 0 2px #222;
-      border: 2px solid white; /* Matches marker style */
+      /* No border! */
     }
   </style>
 </head>
@@ -20,13 +20,13 @@
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script>
 var map = L.map('map', {
-  minZoom: 5,
-  maxZoom: 20
-}).setView([51.898819375615844, 5.7732504428013165], 18);
+  minZoom: 1,
+  maxZoom: 22
+}).setView([51.898819375615844, 5.7732504428013165], 21);
 
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  minZoom: 5,
-  maxZoom: 20
+  minZoom: 1,
+  maxZoom: 22
 }).addTo(map);
 
 // Utility: meters <-> lat/lng
@@ -72,7 +72,7 @@ var centerMarker = L.marker(center, {
   draggable: true
 }).addTo(map);
 
-// Rotation handle (NE corner, custom blue dot)
+// Rotation handle (NE corner, custom blue dot NO border)
 var handleMarker = L.marker(corners[2], {
   draggable: true,
   icon: L.divIcon({

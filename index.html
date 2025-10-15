@@ -11,11 +11,14 @@
 <div id="map"></div>
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script>
-var map = L.map('map').setView([51.898819375615844, 5.7732504428013165], 19);
+var map = L.map('map', {
+  maxZoom: 22 // Or higher, depending on your tile provider
+}).setView([51.898819375615844, 5.7732504428013165], 19);
 
 // OSM tile
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
-
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 22 // Match your map's maxZoom
+}).addTo(map);
 // Utility: meters to degrees (approx for small distances)
 function metersToLat(m) { return m / 111320; }
 function metersToLng(m, lat) { return m / (40075000 * Math.cos(lat * Math.PI / 180) / 360); }

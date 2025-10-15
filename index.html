@@ -5,7 +5,14 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
   <style>
     #map { height: 100vh; width: 100vw; }
-    .rotate-handle { background: red; border-radius: 50%; width: 16px; height: 16px; }
+    .rotate-handle {
+      background: #3388ff; /* Leaflet blue */
+      border-radius: 50%;
+      width: 10px;
+      height: 10px;
+      box-shadow: 0 0 2px #222;
+      border: 2px solid white; /* Matches marker style */
+    }
   </style>
 </head>
 <body>
@@ -24,8 +31,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 // Utility: meters <-> lat/lng
 function metersToLatLng(centerLatLng, dx, dy) {
-  // dx: meters east, dy: meters north
-  var R = 6378137; // earth radius in meters
+  var R = 6378137;
   var dLat = dy / R;
   var dLng = dx / (R * Math.cos(Math.PI * centerLatLng.lat / 180));
   return [
@@ -34,22 +40,18 @@ function metersToLatLng(centerLatLng, dx, dy) {
   ];
 }
 
-// Rectangle points in meters (relative to center)
 function getRectangleCornersMeters(centerLatLng, width_m, height_m, angleDeg) {
   var hw = width_m / 2;
   var hh = height_m / 2;
   var angleRad = angleDeg * Math.PI / 180;
-  // Rectangle corners: SW, SE, NE, NW
   var localCorners = [
     [-hw, -hh], // SW
     [ hw, -hh], // SE
     [ hw,  hh], // NE
     [-hw,  hh]  // NW
   ];
-  // Rotate and convert to lat/lng
   return localCorners.map(function(p) {
     var x = p[0], y = p[1];
-    // Rotate around center
     var xr = x * Math.cos(angleRad) - y * Math.sin(angleRad);
     var yr = x * Math.sin(angleRad) + y * Math.cos(angleRad);
     return metersToLatLng(centerLatLng, xr, yr);
@@ -70,13 +72,16 @@ var centerMarker = L.marker(center, {
   draggable: true
 }).addTo(map);
 
-// Rotation handle (NE corner, custom red dot)
+// Rotation handle (NE corner, custom blue dot)
 var handleMarker = L.marker(corners[2], {
   draggable: true,
-  icon: L.divIcon({className: 'rotate-handle', iconSize: [16, 16]})
+  icon: L.divIcon({
+    className: 'rotate-handle',
+    iconSize: [10, 10]
+  })
 }).addTo(map);
 
-// Drag center marker to move rectangle (keeps 90° corners)
+// Drag center marker to move rectangle and handle
 centerMarker.on('drag', function(e) {
   center = e.latlng;
   corners = getRectangleCornersMeters(center, width, height, angle);
@@ -87,7 +92,6 @@ centerMarker.on('drag', function(e) {
 // Drag rotation handle to rotate rectangle
 handleMarker.on('drag', function(e) {
   var handleLatLng = e.latlng;
-  // Compute angle between center and handle
   var dx = (handleLatLng.lng - center.lng) * Math.cos(center.lat * Math.PI / 180) * 6378137 * Math.PI / 180;
   var dy = (handleLatLng.lat - center.lat) * 6378137 * Math.PI / 180;
   var newAngle = Math.atan2(dy, dx) * 180 / Math.PI - 45;

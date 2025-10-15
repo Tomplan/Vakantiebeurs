@@ -161,7 +161,8 @@
 	<script src="https://unpkg.com/leaflet-path-drag/leaflet.path.drag.js"></script>
 	<script src="https://unpkg.com/leaflet-path-transform/dist/L.Path.Transform.js"></script>
 	<script>
-		console.log(typeof L.Path.Transform); // Should print "function" or "object"
+		console.log("Leaflet version:", L.version);
+		console.log("Is Path.Transform loaded?", typeof L.Path.Transform);
         // ============================================================
     // Since we’re overlaying an SVG image (not a real map),
     // we use Leaflet’s “CRS.Simple” coordinate system.

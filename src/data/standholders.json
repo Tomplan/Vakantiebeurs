@@ -5,8 +5,8 @@
     "stand": " 1 ",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 51.8988427612491,
-    "y": 5.773234641494085
+    "y": 51.8988427612491,
+    "x": 5.773234641494085
   },
   {
     "img": "./src/data/Logo_TrackingTrailer.jpg",
@@ -14,7 +14,7 @@
     "stand": "2",
     "description": "add description here",
     "website": "https://www.4x4vakantiebeurs.nl/",
-    "x": 51.8988427612500,
-    "y": 5.773234641494095
+    "y": 51.8988427612500,
+    "x": 5.773234641494095
   }
 ]

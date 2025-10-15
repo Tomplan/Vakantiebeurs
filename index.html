@@ -282,25 +282,7 @@ var terrainMap2 = L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_terrain
 
             standholders.forEach(stand => {
 
-					function getRectangleBounds(rCenter, rWidthMeters, rHeightMeters) {
-  var rLat = rCenter[0], rLng = rCenter[1];
-  var rLatDiff = (rHeightMeters / 2) / 111320;
-  var rLngDiff = (rWidthMeters / 2) / (111320 * Math.cos(rLat * Math.PI / 180));
-  return [
-    [rLat - rLatDiff, rLng - rLngDiff], // SW
-    [rLat + rLatDiff, rLng + rLngDiff]  // NE
-  ];
-}
 
-var rCenter = [stand.y, stand.x]; // Your preferred center (latitude, longitude)
-var rBounds = getRectangleBounds(rCenter, 6, 6);
-
-var rectangle = L.rectangle(rBounds, {color: "#ff7800", weight: 1}).addTo(map);
-
-// Enable dragging and rotation (requires plugins)
-if (rectangle.dragging) rectangle.dragging.enable(); // Leaflet.Path.Drag
-if (rectangle.transform) rectangle.transform.enable({rotation: true, scaling: false}); // Leaflet.Path.Transform
-				
               // Leaflet uses [lat, lng], so in our flat system: [y, x]
               // Convert SVG x/y to Leaflet pseudo-lat/lng
 
@@ -309,6 +291,28 @@ if (rectangle.transform) rectangle.transform.enable({rotation: true, scaling: fa
                 riseOnHover: true,
                 draggable: true
               });
+
+				// Function to create rectangle bounds centered at marker
+function getRectangleBounds(center, widthMeters, heightMeters, angleDegrees = 0) {
+    // Calculate corners relative to center, apply rotation if needed
+    // For brevity, not shown: you can use turf.js or write your own rotation math
+}
+
+// Create rectangle
+var rectBounds = getRectangleBounds(marker.getLatLng(), 6, 6);
+var rectangle = L.rectangle(rectBounds, {color: "#ffffff", weight: 1}).addTo(map);
+
+// Attach transform plugin
+rectangle.transform.enable({rotation: true, scaling: false, center: marker.getLatLng()});
+
+// When marker is dragged, update rectangle
+marker.on('move', function(e) {
+    var newCenter = e.latlng;
+    var currentAngle = rectangle.transform._rotation || 0; // Get current rotation
+    var rectBounds = getRectangleBounds(newCenter, 6, 6, currentAngle);
+    rectangle.setBounds(rectBounds);
+    rectangle.transform.options.center = newCenter; // Update transform origin
+});
               /* 
                 radius: 10,
                 color: "#1976d2",

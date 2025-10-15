@@ -12,6 +12,8 @@
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script src="https://unpkg.com/leaflet-path-drag/leaflet.path.drag.js"></script>
 <script>
+  console.log(typeof L.Path.Drag); // Should be "function" or "object" if loaded
+
 var map = L.map('map').setView([51.5, -0.09], 16);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 

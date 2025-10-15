@@ -20,12 +20,12 @@
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script>
 var map = L.map('map', {
-  minZoom: 1,
+  minZoom: 16,
   maxZoom: 22
-}).setView([51.898819375615844, 5.7732504428013165], 21);
+}).setView([51.898819375615844, 5.7732504428013165], 18);
 
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  minZoom: 1,
+  minZoom: 16,
   maxZoom: 22
 }).addTo(map);
 

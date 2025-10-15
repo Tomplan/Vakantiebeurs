@@ -111,7 +111,17 @@ handleMarker.on('drag', function(e) {
   handleMarker.setLatLng(corners[2]);
 });
 
-centerMarker.on('dragend', function() {
+// Show popup with coordinates when the marker is clicked
+centerMarker.on('click', function(e) {
+  var lat = e.latlng.lat.toFixed(8);
+  var lng = e.latlng.lng.toFixed(8);
+  centerMarker.bindPopup("Lat: " + lat + "<br>Lng: " + lng).openPopup();
+});
+
+centerMarker.on('dragend', function(e) {
+  var lat = e.target.getLatLng().lat.toFixed(8);
+  var lng = e.target.getLatLng().lng.toFixed(8);
+  centerMarker.bindPopup("Lat: " + lat + "<br>Lng: " + lng).openPopup();
   handleMarker.setLatLng(getRectangleCornersMeters(center, width, height, angle)[2]);
 });
 handleMarker.on('dragend', function() {

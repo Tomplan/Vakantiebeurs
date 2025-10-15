@@ -16,9 +16,7 @@ var map = L.map('map', {
 }).setView([51.898819375615844, 5.7732504428013165], 19);
 
 // OSM tile
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  maxZoom: 22 // Match your map's maxZoom
-}).addTo(map);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 // Utility: meters to degrees (approx for small distances)
 function metersToLat(m) { return m / 111320; }
 function metersToLng(m, lat) { return m / (40075000 * Math.cos(lat * Math.PI / 180) / 360); }

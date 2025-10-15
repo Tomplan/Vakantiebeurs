@@ -331,7 +331,7 @@ function getRectangleCorners(center, width, height, angleDeg) {
     rectangle.setLatLngs(newCorners);
     rectangle._center = center;
   });
-
+console.log(rectangle.transform); // Should not be undefined
   // --- Enable rotation via path-transform plugin ---
   rectangle.transform.enable({rotation: true, scaling: false});
   rectangle._center = [stand.y, stand.x];

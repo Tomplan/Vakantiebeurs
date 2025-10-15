@@ -2,13 +2,85 @@
 <html>
 <head>
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <style>
+    #map { height: 100vh; }
+    .rotate-handle { background: red; border-radius: 50%; width: 12px; height: 12px; }
+  </style>
 </head>
 <body>
-<div id="map" style="height:400px"></div>
+<div id="map"></div>
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-  <script src="https://unpkg.com/leaflet-editable@1.2.0/src/Leaflet.Editable.js"></script>
+<script src="https://unpkg.com/leaflet-path-drag/leaflet.path.drag.js"></script>
 <script>
-console.log("Leaflet version:", L.version);
+var map = L.map('map').setView([51.5, -0.09], 16);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+function getRectangleCorners(center, width, height, angleDeg) {
+  var angleRad = angleDeg * Math.PI / 180;
+  var halfW = width / 2;
+  var halfH = height / 2;
+  // Rectangle corners: SW, SE, NE, NW
+  var corners = [
+    [-halfH, -halfW], // SW
+    [-halfH, halfW],  // SE
+    [halfH, halfW],   // NE
+    [halfH, -halfW],  // NW
+  ];
+  return corners.map(function(offset) {
+    var y = center[0] + (offset[0] * Math.cos(angleRad) - offset[1] * Math.sin(angleRad));
+    var x = center[1] + (offset[0] * Math.sin(angleRad) + offset[1] * Math.cos(angleRad));
+    return [y, x];
+  });
+}
+
+var center = [51.5, -0.09];
+var width = 0.001;  // ~meters, adjust for your CRS
+var height = 0.001;
+var angle = 0;
+
+// Create polygon rectangle
+var corners = getRectangleCorners(center, width, height, angle);
+var rect = L.polygon(corners, {color: "blue", weight: 2}).addTo(map);
+
+// Enable dragging
+rect.dragging.enable();
+
+// Add a rotation handle (as a draggable marker on NE corner)
+var handlePos = corners[2]; // NE
+var rotateHandle = L.marker(handlePos, {
+  draggable: true,
+  icon: L.divIcon({className: 'rotate-handle', iconSize: [12, 12]})
+}).addTo(map);
+
+// Update handle position when rectangle is dragged
+rect.on('drag', function() {
+  center = rect.getBounds().getCenter();
+  corners = getRectangleCorners([center.lat, center.lng], width, height, angle);
+  rect.setLatLngs(corners);
+  rotateHandle.setLatLng(corners[2]);
+});
+
+// When the rotation handle is dragged, recalculate angle and polygon
+rotateHandle.on('drag', function(e) {
+  var handleLatLng = e.latlng;
+  var c = rect.getBounds().getCenter();
+  var cx = c.lng, cy = c.lat;
+  var hx = handleLatLng.lng, hy = handleLatLng.lat;
+  // Calculate angle between center and handle
+  var newAngle = Math.atan2(hy - cy, hx - cx) * 180 / Math.PI - 45;
+  angle = newAngle; // update global angle
+  corners = getRectangleCorners([cy, cx], width, height, angle);
+  rect.setLatLngs(corners);
+  rotateHandle.setLatLng(corners[2]);
+});
+
+// Optional: keep rectangle and handle together when the rectangle is dragged
+rect.on('dragend', function() {
+  center = rect.getBounds().getCenter();
+  corners = getRectangleCorners([center.lat, center.lng], width, height, angle);
+  rect.setLatLngs(corners);
+  rotateHandle.setLatLng(corners[2]);
+});
 </script>
 </body>
 </html>

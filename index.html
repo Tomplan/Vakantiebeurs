@@ -3,7 +3,7 @@
 <head>
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
   <style>
-    #map { height: 100vh; }
+    #map { height: 100vh; width: 100vw; }
     .rotate-handle { background: red; border-radius: 50%; width: 16px; height: 16px; }
   </style>
 </head>
@@ -12,16 +12,16 @@
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script>
 var map = L.map('map', {
-  minZoom: 1,   // Lowest zoom level (you can set to 0 if you want global view)
-  maxZoom: 22   // Highest zoom level
-}).setView([51.898819375615844, 5.7732504428013165], 19);
+  minZoom: 1,
+  maxZoom: 22
+}).setView([51.5, -0.09], 19);
 
-// OSM tile
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  minZoom: 1,   // Match your map's minZoom
-  maxZoom: 22   // Match your map's maxZoom
+  minZoom: 1,
+  maxZoom: 22
 }).addTo(map);
-  // Utility: meters to degrees (approx for small distances)
+
+// Utility: meters to degrees (approx for small distances)
 function metersToLat(m) { return m / 111320; }
 function metersToLng(m, lat) { return m / (40075000 * Math.cos(lat * Math.PI / 180) / 360); }
 
@@ -30,13 +30,13 @@ function getRectangleCorners(center, width_m, height_m, angleDeg) {
   var halfW = metersToLng(width_m, lat) / 2;
   var halfH = metersToLat(height_m) / 2;
   var angleRad = angleDeg * Math.PI / 180;
-  var corners = [
+  var baseCorners = [
     [-halfH, -halfW], // SW
     [-halfH, halfW],  // SE
     [halfH, halfW],   // NE
     [halfH, -halfW],  // NW
   ];
-  return corners.map(function(offset) {
+  return baseCorners.map(function(offset) {
     var dLat = offset[0], dLng = offset[1];
     var rotLat = dLat * Math.cos(angleRad) - dLng * Math.sin(angleRad);
     var rotLng = dLat * Math.sin(angleRad) + dLng * Math.cos(angleRad);
@@ -45,7 +45,7 @@ function getRectangleCorners(center, width_m, height_m, angleDeg) {
 }
 
 // Initial state: center marker, dimensions, angle
-var center = [51.898819375615844, 5.7732504428013165];
+var center = [51.5, -0.09];
 var width = 6;    // meters
 var height = 6;   // meters
 var angle = 0;    // degrees
@@ -85,7 +85,7 @@ handleMarker.on('drag', function(e) {
   handleMarker.setLatLng(corners[2]);
 });
 
-// Keep handle in sync after drag ends
+// Always keep handle in sync after drag ends
 handleMarker.on('dragend', function() {
   handleMarker.setLatLng(getRectangleCorners(center, width, height, angle)[2]);
 });

@@ -21,76 +21,86 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 22
 }).addTo(map);
 
-// Utility: meters to degrees (approx for small distances)
-function metersToLat(m) { return m / 111320; }
-function metersToLng(m, lat) { return m / (40075000 * Math.cos(lat * Math.PI / 180) / 360); }
-
-function getRectangleCorners(center, width_m, height_m, angleDeg) {
-  var lat = center[0], lng = center[1];
-  var halfW = metersToLng(width_m, lat) / 2;
-  var halfH = metersToLat(height_m) / 2;
-  var angleRad = angleDeg * Math.PI / 180;
-  var baseCorners = [
-    [-halfH, -halfW], // SW
-    [-halfH, halfW],  // SE
-    [halfH, halfW],   // NE
-    [halfH, -halfW],  // NW
+// Utility: meters <-> lat/lng
+function metersToLatLng(centerLatLng, dx, dy) {
+  // dx: meters east, dy: meters north
+  var R = 6378137; // earth radius in meters
+  var dLat = dy / R;
+  var dLng = dx / (R * Math.cos(Math.PI * centerLatLng.lat / 180));
+  return [
+    centerLatLng.lat + dLat * 180 / Math.PI,
+    centerLatLng.lng + dLng * 180 / Math.PI
   ];
-  return baseCorners.map(function(offset) {
-    var dLat = offset[0], dLng = offset[1];
-    var rotLat = dLat * Math.cos(angleRad) - dLng * Math.sin(angleRad);
-    var rotLng = dLat * Math.sin(angleRad) + dLng * Math.cos(angleRad);
-    return [lat + rotLat, lng + rotLng];
+}
+
+// Rectangle points in meters (relative to center)
+function getRectangleCornersMeters(centerLatLng, width_m, height_m, angleDeg) {
+  var hw = width_m / 2;
+  var hh = height_m / 2;
+  var angleRad = angleDeg * Math.PI / 180;
+  // Rectangle corners: SW, SE, NE, NW
+  var localCorners = [
+    [-hw, -hh], // SW
+    [ hw, -hh], // SE
+    [ hw,  hh], // NE
+    [-hw,  hh]  // NW
+  ];
+  // Rotate and convert to lat/lng
+  return localCorners.map(function(p) {
+    var x = p[0], y = p[1];
+    // Rotate around center
+    var xr = x * Math.cos(angleRad) - y * Math.sin(angleRad);
+    var yr = x * Math.sin(angleRad) + y * Math.cos(angleRad);
+    return metersToLatLng(centerLatLng, xr, yr);
   });
 }
 
-// Initial state: center marker, dimensions, angle
-var center = [51.5, -0.09];
+// Initial rectangle properties
+var center = L.latLng(51.5, -0.09);
 var width = 6;    // meters
 var height = 6;   // meters
 var angle = 0;    // degrees
 
-var corners = getRectangleCorners(center, width, height, angle);
+var corners = getRectangleCornersMeters(center, width, height, angle);
 var rect = L.polygon(corners, {color: "blue", weight: 2}).addTo(map);
 
-// Center marker: built-in Leaflet blue pin
+// Center marker (built-in Leaflet marker)
 var centerMarker = L.marker(center, {
   draggable: true
 }).addTo(map);
 
-// Rotation handle on NE corner (red dot)
+// Rotation handle (NE corner, custom red dot)
 var handleMarker = L.marker(corners[2], {
   draggable: true,
   icon: L.divIcon({className: 'rotate-handle', iconSize: [16, 16]})
 }).addTo(map);
 
-// Move rectangle and handle when center marker is dragged
+// Drag center marker to move rectangle (keeps 90° corners)
 centerMarker.on('drag', function(e) {
-  center = [e.latlng.lat, e.latlng.lng];
-  corners = getRectangleCorners(center, width, height, angle);
+  center = e.latlng;
+  corners = getRectangleCornersMeters(center, width, height, angle);
   rect.setLatLngs(corners);
   handleMarker.setLatLng(corners[2]);
 });
 
-// Rotate rectangle when handle is dragged
+// Drag rotation handle to rotate rectangle
 handleMarker.on('drag', function(e) {
   var handleLatLng = e.latlng;
-  var cy = center[0], cx = center[1];
-  var hy = handleLatLng.lat, hx = handleLatLng.lng;
-  // Angle between center and handle (adjust -45 due to rectangle orientation)
-  var newAngle = Math.atan2(hy - cy, hx - cx) * 180 / Math.PI - 45;
+  // Compute angle between center and handle (ignore Earth's curvature for small distances)
+  var dx = (handleLatLng.lng - center.lng) * Math.cos(center.lat * Math.PI / 180) * 111320;
+  var dy = (handleLatLng.lat - center.lat) * 111320;
+  var newAngle = Math.atan2(dy, dx) * 180 / Math.PI - 45;
   angle = newAngle;
-  corners = getRectangleCorners(center, width, height, angle);
+  corners = getRectangleCornersMeters(center, width, height, angle);
   rect.setLatLngs(corners);
   handleMarker.setLatLng(corners[2]);
 });
 
-// Always keep handle in sync after drag ends
-handleMarker.on('dragend', function() {
-  handleMarker.setLatLng(getRectangleCorners(center, width, height, angle)[2]);
-});
 centerMarker.on('dragend', function() {
-  handleMarker.setLatLng(getRectangleCorners(center, width, height, angle)[2]);
+  handleMarker.setLatLng(getRectangleCornersMeters(center, width, height, angle)[2]);
+});
+handleMarker.on('dragend', function() {
+  handleMarker.setLatLng(getRectangleCornersMeters(center, width, height, angle)[2]);
 });
 </script>
 </body>

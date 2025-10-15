@@ -4,16 +4,14 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
   <style>
     #map { height: 100vh; }
-    .rotate-handle { background: red; border-radius: 50%; width: 12px; height: 12px; }
+    .rotate-handle { background: red; border-radius: 50%; width: 14px; height: 14px; }
+    .center-marker { background: blue; border-radius: 50%; width: 10px; height: 10px; }
   </style>
 </head>
 <body>
 <div id="map"></div>
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<script src="https://unpkg.com/leaflet-path-drag/leaflet.path.drag.js"></script>
 <script>
-  console.log(typeof L.Path.Drag); // Should be "function" or "object" if loaded
-
 var map = L.map('map').setView([51.5, -0.09], 16);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
@@ -21,7 +19,6 @@ function getRectangleCorners(center, width, height, angleDeg) {
   var angleRad = angleDeg * Math.PI / 180;
   var halfW = width / 2;
   var halfH = height / 2;
-  // Rectangle corners: SW, SE, NE, NW
   var corners = [
     [-halfH, -halfW], // SW
     [-halfH, halfW],  // SE
@@ -29,59 +26,60 @@ function getRectangleCorners(center, width, height, angleDeg) {
     [halfH, -halfW],  // NW
   ];
   return corners.map(function(offset) {
-    var y = center[0] + (offset[0] * Math.cos(angleRad) - offset[1] * Math.sin(angleRad));
-    var x = center[1] + (offset[0] * Math.sin(angleRad) + offset[1] * Math.cos(angleRad));
-    return [y, x];
+    var lat = center[0] + (offset[0] * Math.cos(angleRad) - offset[1] * Math.sin(angleRad));
+    var lng = center[1] + (offset[0] * Math.sin(angleRad) + offset[1] * Math.cos(angleRad));
+    return [lat, lng];
   });
 }
 
+// Initial state
 var center = [51.5, -0.09];
-var width = 0.001;  // ~meters, adjust for your CRS
+var width = 0.001;
 var height = 0.001;
 var angle = 0;
 
-// Create polygon rectangle
 var corners = getRectangleCorners(center, width, height, angle);
 var rect = L.polygon(corners, {color: "blue", weight: 2}).addTo(map);
 
-// Enable dragging
-rect.dragging.enable();
-
-// Add a rotation handle (as a draggable marker on NE corner)
-var handlePos = corners[2]; // NE
-var rotateHandle = L.marker(handlePos, {
+// Center draggable marker
+var centerMarker = L.marker(center, {
   draggable: true,
-  icon: L.divIcon({className: 'rotate-handle', iconSize: [12, 12]})
+  icon: L.divIcon({className: 'center-marker', iconSize: [10, 10]})
 }).addTo(map);
 
-// Update handle position when rectangle is dragged
-rect.on('drag', function() {
-  center = rect.getBounds().getCenter();
-  corners = getRectangleCorners([center.lat, center.lng], width, height, angle);
+// Rotation handle on NE corner
+var handleMarker = L.marker(corners[2], {
+  draggable: true,
+  icon: L.divIcon({className: 'rotate-handle', iconSize: [14, 14]})
+}).addTo(map);
+
+// When center marker dragged, move rectangle and handle
+centerMarker.on('drag', function(e) {
+  center = [e.latlng.lat, e.latlng.lng];
+  corners = getRectangleCorners(center, width, height, angle);
   rect.setLatLngs(corners);
-  rotateHandle.setLatLng(corners[2]);
+  handleMarker.setLatLng(corners[2]);
 });
 
-// When the rotation handle is dragged, recalculate angle and polygon
-rotateHandle.on('drag', function(e) {
+// When rotation handle dragged, compute new angle
+handleMarker.on('drag', function(e) {
   var handleLatLng = e.latlng;
-  var c = rect.getBounds().getCenter();
-  var cx = c.lng, cy = c.lat;
-  var hx = handleLatLng.lng, hy = handleLatLng.lat;
-  // Calculate angle between center and handle
+  var cy = center[0], cx = center[1];
+  var hy = handleLatLng.lat, hx = handleLatLng.lng;
+  // Angle between center and handle
   var newAngle = Math.atan2(hy - cy, hx - cx) * 180 / Math.PI - 45;
-  angle = newAngle; // update global angle
-  corners = getRectangleCorners([cy, cx], width, height, angle);
+  angle = newAngle;
+  corners = getRectangleCorners(center, width, height, angle);
   rect.setLatLngs(corners);
-  rotateHandle.setLatLng(corners[2]);
+  handleMarker.setLatLng(corners[2]);
 });
 
-// Optional: keep rectangle and handle together when the rectangle is dragged
-rect.on('dragend', function() {
-  center = rect.getBounds().getCenter();
-  corners = getRectangleCorners([center.lat, center.lng], width, height, angle);
-  rect.setLatLngs(corners);
-  rotateHandle.setLatLng(corners[2]);
+// Optional: keep handle and rectangle in sync after drag ends
+handleMarker.on('dragend', function() {
+  handleMarker.setLatLng(getRectangleCorners(center, width, height, angle)[2]);
+});
+centerMarker.on('dragend', function() {
+  handleMarker.setLatLng(getRectangleCorners(center, width, height, angle)[2]);
 });
 </script>
 </body>

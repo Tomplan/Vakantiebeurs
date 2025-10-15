@@ -12,12 +12,16 @@
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script>
 var map = L.map('map', {
-  maxZoom: 22 // Or higher, depending on your tile provider
+  minZoom: 1,   // Lowest zoom level (you can set to 0 if you want global view)
+  maxZoom: 22   // Highest zoom level
 }).setView([51.898819375615844, 5.7732504428013165], 19);
 
 // OSM tile
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
-// Utility: meters to degrees (approx for small distances)
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  minZoom: 1,   // Match your map's minZoom
+  maxZoom: 22   // Match your map's maxZoom
+}).addTo(map);
+  // Utility: meters to degrees (approx for small distances)
 function metersToLat(m) { return m / 111320; }
 function metersToLng(m, lat) { return m / (40075000 * Math.cos(lat * Math.PI / 180) / 360); }
 

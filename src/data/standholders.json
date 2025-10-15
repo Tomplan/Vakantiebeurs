@@ -1,5 +1,6 @@
 [
   {
+    "id": 1,
     "img": "./src/data/Logo_TrackingTrailer.jpg",
     "name": "Name_1",
     "stand": " 1 ",
@@ -9,6 +10,7 @@
     "x": 5.7732504428013165
   },
   {
+    "id": 2,
     "img": "./src/data/Logo_TrackingTrailer.jpg",
     "name": "Name_2",
     "stand": "2",
@@ -16,5 +18,45 @@
     "website": "https://www.4x4vakantiebeurs.nl/",
     "y": 51.898826409631546,
     "x": 5.773336273485341
+  },
+  {
+    "id": 3,
+    "img": "./src/data/Logo_TrackingTrailer.jpg",
+    "name": "Name_2",
+    "stand": "2",
+    "description": "add description here",
+    "website": "https://www.4x4vakantiebeurs.nl/",
+    "y": 51.898826409631546,
+    "x": 5.773336273485341
+  },
+  {
+    "id": 4,
+    "img": "./src/data/Logo_TrackingTrailer.jpg",
+    "name": "Name_3",
+    "stand": "3",
+    "description": "add description here",
+    "website": "https://www.4x4vakantiebeurs.nl/",
+    "y": 51.89883261611509, 
+    "x": 5.773422774721581
+  },
+  {
+    "id": 4,
+    "img": "./src/data/Logo_TrackingTrailer.jpg",
+    "name": "Name_4",
+    "stand": "4",
+    "description": "add description here",
+    "website": "https://www.4x4vakantiebeurs.nl/",
+    "y": 51.8988396501287, 
+    "x": 5.773509275957824
+  },
+  {
+    "id": 5,
+    "img": "./src/data/Logo_TrackingTrailer.jpg",
+    "name": "Name_5",
+    "stand": "5",
+    "description": "add description here",
+    "website": "https://www.4x4vakantiebeurs.nl/",
+    "y": 51.89878627435071, 
+    "x": 5.773165282669513
   }
 ]

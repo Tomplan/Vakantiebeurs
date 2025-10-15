@@ -23,21 +23,14 @@ var map = L.map('map', {
   minZoom: 16,
   maxZoom: 22
 }).setView([51.898819375615844, 5.7732504428013165], 18);
-/*
-var streetMap = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  minZoom: 16,
-  maxZoom: 22
-});
 
-  streetMap.addTo(map);
- */ 
  var terrainMap = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png', {
 	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
 	subdomains: 'abcd',
 	minZoom: 16,
   maxZoom: 22
 });
-	   terrainMap.addTo(map); 
+terrainMap.addTo(map); 
   
 // Utility: meters <-> lat/lng
 function metersToLatLng(centerLatLng, dx, dy) {
@@ -91,6 +84,16 @@ var handleMarker = L.marker(corners[2], {
   })
 }).addTo(map);
 
+// Helper function: show popup with coords and angle
+function showMarkerPopup(latlng, angle) {
+  var lat = latlng.lat.toFixed(8);
+  var lng = latlng.lng.toFixed(8);
+  var angleText = angle.toFixed(2);
+  centerMarker.bindPopup(
+    "Lat: " + lat + "<br>Lng: " + lng + "<br>Angle: " + angleText + "°"
+  ).openPopup();
+}
+
 // Drag center marker to move rectangle and handle
 centerMarker.on('drag', function(e) {
   center = e.latlng;
@@ -111,21 +114,19 @@ handleMarker.on('drag', function(e) {
   handleMarker.setLatLng(corners[2]);
 });
 
-// Show popup with coordinates when the marker is clicked
+// Show popup with coordinates + angle when the marker is clicked
 centerMarker.on('click', function(e) {
-  var lat = e.latlng.lat.toFixed(8);
-  var lng = e.latlng.lng.toFixed(8);
-  centerMarker.bindPopup("Lat: " + lat + "<br>Lng: " + lng).openPopup();
+  showMarkerPopup(e.latlng, angle);
 });
 
+// Show popup when dragging ends
 centerMarker.on('dragend', function(e) {
-  var lat = e.target.getLatLng().lat.toFixed(8);
-  var lng = e.target.getLatLng().lng.toFixed(8);
-  centerMarker.bindPopup("Lat: " + lat + "<br>Lng: " + lng).openPopup();
+  showMarkerPopup(e.target.getLatLng(), angle);
   handleMarker.setLatLng(getRectangleCornersMeters(center, width, height, angle)[2]);
 });
 handleMarker.on('dragend', function() {
   handleMarker.setLatLng(getRectangleCornersMeters(center, width, height, angle)[2]);
+  showMarkerPopup(center, angle);
 });
 </script>
 </body>

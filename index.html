@@ -15,5 +15,70 @@ var map = L.map('map').setView([51.5, -0.09], 16);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
 function getRectangleCorners(center, width, height, angleDeg) {
-  var angle
-
+  var angleRad = angleDeg * Math.PI / 180;
+  var halfW = width / 2;
+  var halfH = height / 2;
+  var corners = [
+    [-halfH, -halfW], // SW
+    [-halfH, halfW],  // SE
+    [halfH, halfW],   // NE
+    [halfH, -halfW],  // NW
+  ];
+  return corners.map(function(offset) {
+    var lat = center[0] + (offset[0] * Math.cos(angleRad) - offset[1] * Math.sin(angleRad));
+    var lng = center[1] + (offset[0] * Math.sin(angleRad) + offset[1] * Math.cos(angleRad));
+    return [lat, lng];
+  });
+}
+
+// Initial state
+var center = [51.5, -0.09];
+var width = 0.001;
+var height = 0.001;
+var angle = 0;
+
+var corners = getRectangleCorners(center, width, height, angle);
+var rect = L.polygon(corners, {color: "blue", weight: 2}).addTo(map);
+
+// Center marker: use Leaflet's default (blue pin) marker
+var centerMarker = L.marker(center, {
+  draggable: true
+}).addTo(map);
+
+// Rotation handle on NE corner (custom red dot)
+var handleMarker = L.marker(corners[2], {
+  draggable: true,
+  icon: L.divIcon({className: 'rotate-handle', iconSize: [14, 14]})
+}).addTo(map);
+
+// When center marker dragged, move rectangle and handle
+centerMarker.on('drag', function(e) {
+  center = [e.latlng.lat, e.latlng.lng];
+  corners = getRectangleCorners(center, width, height, angle);
+  rect.setLatLngs(corners);
+  handleMarker.setLatLng(corners[2]);
+});
+
+// When rotation handle dragged, compute new angle
+handleMarker.on('drag', function(e) {
+  var handleLatLng = e.latlng;
+  var cy = center[0], cx = center[1];
+  var hy = handleLatLng.lat, hx = handleLatLng.lng;
+  // Angle between center and handle
+  var newAngle = Math.atan2(hy - cy, hx - cx) * 180 / Math.PI - 45;
+  angle = newAngle;
+  corners = getRectangleCorners(center, width, height, angle);
+  rect.setLatLngs(corners);
+  handleMarker.setLatLng(corners[2]);
+});
+
+// Optional: keep handle and rectangle in sync after drag ends
+handleMarker.on('dragend', function() {
+  handleMarker.setLatLng(getRectangleCorners(center, width, height, angle)[2]);
+});
+centerMarker.on('dragend', function() {
+  handleMarker.setLatLng(getRectangleCorners(center, width, height, angle)[2]);
+});
+</script>
+</body>
+</html>

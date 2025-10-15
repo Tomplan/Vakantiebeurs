@@ -318,34 +318,7 @@ function getRectangleCorners(center, width, height, angleDeg) {
               });
 
 				
-  // Initial rectangle corners (unrotated)
-  var rectCorners = getRectangleCorners([stand.y, stand.x], 6, 6, 0);
-  var rectangle = L.polygon(rectCorners, {color: "#1976d2", weight: 1}).addTo(map);
-
-  // --- Sync rectangle on marker drag ---
-  marker.on('move', function(e) {
-    var center = [e.latlng.lat, e.latlng.lng];
-    // Get current rectangle rotation (stored as property)
-    var angle = rectangle._angle || 0;
-    var newCorners = getRectangleCorners(center, 6, 6, angle);
-    rectangle.setLatLngs(newCorners);
-    rectangle._center = center;
-  });
-console.log(rectangle.transform); // Should not be undefined
-  // --- Enable rotation via path-transform plugin ---
-  rectangle.transform.enable({rotation: true, scaling: false});
-  rectangle._center = [stand.y, stand.x];
-  rectangle._angle = 0;
-
-  // When rectangle is rotated, update its stored angle and redraw at correct center
-  rectangle.on('transformed', function(e) {
-    // e.layer.transform._rotation is in radians
-    var angle = e.layer.transform._rotation * (180/Math.PI);
-    rectangle._angle = angle;
-    var center = rectangle._center || [stand.y, stand.x];
-    var newCorners = getRectangleCorners(center, 6, 6, angle);
-    rectangle.setLatLngs(newCorners);
-  });
+ 
               /* 
                 radius: 10,
                 color: "#1976d2",
@@ -374,6 +347,35 @@ console.log(rectangle.transform); // Should not be undefined
               });
               // Add this marker to the group
               markerLayer.addLayer(marker);
+				
+				 // Initial rectangle corners (unrotated)
+  var rectCorners = getRectangleCorners([stand.y, stand.x], 6, 6, 0);
+  var rectangle = L.polygon(rectCorners, {color: "#1976d2", weight: 1}).addTo(map);
+
+  // --- Sync rectangle on marker drag ---
+  marker.on('move', function(e) {
+    var center = [e.latlng.lat, e.latlng.lng];
+    // Get current rectangle rotation (stored as property)
+    var angle = rectangle._angle || 0;
+    var newCorners = getRectangleCorners(center, 6, 6, angle);
+    rectangle.setLatLngs(newCorners);
+    rectangle._center = center;
+  });
+console.log(rectangle.transform); // Should not be undefined
+  // --- Enable rotation via path-transform plugin ---
+  rectangle.transform.enable({rotation: true, scaling: false});
+  rectangle._center = [stand.y, stand.x];
+  rectangle._angle = 0;
+
+  // When rectangle is rotated, update its stored angle and redraw at correct center
+  rectangle.on('transformed', function(e) {
+    // e.layer.transform._rotation is in radians
+    var angle = e.layer.transform._rotation * (180/Math.PI);
+    rectangle._angle = angle;
+    var center = rectangle._center || [stand.y, stand.x];
+    var newCorners = getRectangleCorners(center, 6, 6, angle);
+    rectangle.setLatLngs(newCorners);
+  });
             });   // ends forEach
           }       // ends if
         }         // ends function showMarkersIfZoom

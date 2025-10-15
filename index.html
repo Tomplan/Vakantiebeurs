@@ -292,27 +292,7 @@ var terrainMap2 = L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_terrain
                 draggable: true
               });
 
-				// Function to create rectangle bounds centered at marker
-function getRectangleBounds(center, widthMeters, heightMeters, angleDegrees = 0) {
-    // Calculate corners relative to center, apply rotation if needed
-    // For brevity, not shown: you can use turf.js or write your own rotation math
-}
 
-// Create rectangle
-var rectBounds = getRectangleBounds(marker.getLatLng(), 6, 6);
-var rectangle = L.rectangle(rectBounds, {color: "#ffffff", weight: 1}).addTo(map);
-
-// Attach transform plugin
-rectangle.transform.enable({rotation: true, scaling: false, center: marker.getLatLng()});
-
-// When marker is dragged, update rectangle
-marker.on('move', function(e) {
-    var newCenter = e.latlng;
-    var currentAngle = rectangle.transform._rotation || 0; // Get current rotation
-    var rectBounds = getRectangleBounds(newCenter, 6, 6, currentAngle);
-    rectangle.setBounds(rectBounds);
-    rectangle.transform.options.center = newCenter; // Update transform origin
-});
               /* 
                 radius: 10,
                 color: "#1976d2",
